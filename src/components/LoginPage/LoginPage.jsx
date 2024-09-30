@@ -266,7 +266,6 @@ const LoginPage = () => {
           </div>
           <a href="/forget-password" style={{ fontSize: "16px", color: "white", marginBottom: "10px", marginLeft:'380px', fontWeight:'600' }}>Forgot password?</a>
           <button className="buttonClass" type="submit">Log In</button>
-          <p className="mt-[10px] text-white font-medium sm:hidden">Don’t have an account? <a>Register</a></p>
         </form>
       </div>
       <div className="overlay-container">
