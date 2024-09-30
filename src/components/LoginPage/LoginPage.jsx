@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 
-
 const LoginPage = () => {
   const navigate = useNavigate();
   const [isRightPanelActive, setIsRightPanelActive] = useState(false);
@@ -38,6 +37,16 @@ const LoginPage = () => {
   const handleChange = (newValue) => {
     setOtp(newValue)
   }
+
+  const token = localStorage.getItem('token'); // Retrieve token from localStorage
+
+  useEffect(() => {
+    // Check if token exists
+    if (token) {
+      // Redirect to home page
+      navigate('/'); // Change '/home' to your home route
+    }
+  }, [token, navigate]);
 
   // Toggle function for password visibility
   const togglePasswordVisibility = () => {
@@ -140,7 +149,20 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post("https://law-api.tecosys.ai/api/login/", {email: signInData.email, password: signInData.password});
-      toast.success("Login successful!");
+      if (response.status === 200) {
+        const { token } = response.data;
+        
+
+        // Store token in localStorage
+        localStorage.setItem("token", token);
+
+
+        toast.success("Login successful!"); 
+
+        // Redirect to the homepage or any other protected route
+        navigate('/');
+      }
+      
     } catch (error) {
       toast.error("Login failed!");
     }
@@ -210,18 +232,18 @@ const LoginPage = () => {
               </a>
             </div>
             <p style={{color: "white", margin: "10px 0", fontSize: '16px', fontWeight:'500'}}>Or</p>
-            <input className="inputClass" name="name" value={signUpData.name} type="text" placeholder=" Enter your full name" onChange={handleSignUpDataChange} required />
-            <input className="inputClass" name="username" value={signUpData.username} type="text" placeholder=" Enter your username" onChange={handleSignUpDataChange} required />
-            <input className="inputClass" name="email" value={signUpData.email} type="email" placeholder="Enter your email address" onChange={handleSignUpDataChange} required />
+            <input className="inputClass" name="name" value={signUpData.name} type="text" placeholder=" Enter your full name" onChange={handleSignUpDataChange} required={true} />
+            <input className="inputClass" name="username" value={signUpData.username} type="text" placeholder=" Enter your username" onChange={handleSignUpDataChange} required={true} />
+            <input className="inputClass" name="email" value={signUpData.email} type="email" placeholder="Enter your email address" onChange={handleSignUpDataChange} required={true} />
             <div style={{ position: 'relative', width: '100%' }}>
-              <input className="inputClass" name="password" value={signUpData.password} type={showPassword ? 'text' : 'password'} placeholder="Enter your password" onChange={handleSignUpDataChange} style={{ width: '80%',}} required />
+              <input className="inputClass" name="password" value={signUpData.password} type={showPassword ? 'text' : 'password'} placeholder="Enter your password" onChange={handleSignUpDataChange} style={{ width: '80%',}} required={true} />
               <IconButton onClick={togglePasswordVisibility} style={{ position: 'absolute', cursor: 'pointer', right: '60px', top: '50%', transform: 'translateY(-50%)', zIndex:'4', marginRight:'10px' }}>
                 {showPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
               </IconButton>
             </div>
 
             <div style={{position: 'relative', width: '100%', marginBottom: '10px'}}>
-            <input className="inputClass" name="confirm_password" value={signUpData.confirm_password} type={showPassword ? 'text' : 'password'} placeholder="Enter your password" onChange={handleSignUpDataChange} style={{ width: '80%',}} required />
+            <input className="inputClass" name="confirm_password" value={signUpData.confirm_password} type={showPassword ? 'text' : 'password'} placeholder="Enter your password" onChange={handleSignUpDataChange} style={{ width: '80%',}} required={true} />
               <IconButton onClick={toggleRetypePasswordVisibility} style={{ position: 'absolute', cursor: 'pointer', right: '60px', top: '50%', transform: 'translateY(-50%)', zIndex:'4', marginRight:'10px' }}>
                 {showRetypePassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
               </IconButton>
@@ -257,9 +279,9 @@ const LoginPage = () => {
             </a>
           </div>
           <span style={{color: "white", margin: "10px 0", fontSize: '16px', fontWeight:'600'}}>Or</span>
-          <input className="inputClass" name="email" value={signInData.email} type="email" placeholder="Enter your email address" onChange={handleSignInDataChange} required />
+          <input className="inputClass" name="email" value={signInData.email} type="email" placeholder="Enter your email address" onChange={handleSignInDataChange} required={true} />
           <div style={{position: 'relative', width: '100%', marginBottom: '10px'}}>
-            <input className="inputClass" name="password" value={signInData.password} type={showSignInPassword ? 'text' : 'password'} placeholder="Enter your password" onChange={handleSignInDataChange} reuired style={{ width: '80%', paddingRight: '40px' }} required />
+            <input className="inputClass" name="password" value={signInData.password} type={showSignInPassword ? 'text' : 'password'} placeholder="Enter your password" onChange={handleSignInDataChange} reuired="true" style={{ width: '80%', paddingRight: '40px' }} required={true} />
             <IconButton onClick={toggleSignInPasswordVisibility} style={{ position: 'absolute', cursor: 'pointer', right: '60px', top: '50%', transform: 'translateY(-50%)', zIndex:'4', marginRight:'10px' }}>
               {showSignInPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
             </IconButton>

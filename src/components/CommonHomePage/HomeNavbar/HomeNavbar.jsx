@@ -16,6 +16,8 @@ const HomeNavbar = ({ onToggleDarkMode }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null); // State to track active li
 
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -74,9 +76,13 @@ const HomeNavbar = ({ onToggleDarkMode }) => {
           </Link>
         </button>
         <button className="login">
-          <Link to="/auth-user" style={{ color: isDarkMode ? "#000" : "#fff" }}>
-            Signin 
+          {token?(<Link to="/casesearch" style={{ color: isDarkMode ? "#000" : "#fff" }}>
+            dashboard 
+          </Link>):(
+            <Link to="/auth-user" style={{ color: isDarkMode ? "#000" : "#fff" }}>
+            signin 
           </Link>
+          )}
         </button>
       </div>
     </div>

@@ -8,6 +8,7 @@ import AttachmentOutlinedIcon from "@mui/icons-material/AttachmentOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import { IconButton } from "@mui/material";
 import SideNavbar from "../Sidenavbar/SideNavbar.jsx";
+import { useNavigate } from "react-router-dom";
 
 const CaseSearch = () => {
   const [showPIDropdown, setShowPIDropdown] = useState(false);
@@ -21,10 +22,24 @@ const CaseSearch = () => {
 
   const navRef = useRef(null);
 
+  const navigate=useNavigate()
+
   // Handle input query change
   const handleQuerySearchInput = (e) => {
     setSearchQuery(e.target.value);
   };
+
+  const token = localStorage.getItem('token'); // Retrieve token from localStorage
+
+  useEffect(() => {
+    // Check if token exists
+    if (token) {
+      // Redirect to home page
+      navigate('/casesearch'); // Change '/home' to your home route
+    }else{
+      navigate('/auth-user');
+    }
+  }, [token, navigate]);
 
   // Fetch query result array (cases) from API
   const handleGetQueryResultArray = useCallback(async () => {

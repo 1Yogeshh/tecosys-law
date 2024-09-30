@@ -5,6 +5,7 @@ import img6 from "../assets/white version.png";
 import { ArrowForward, AutoAwesome } from "@mui/icons-material";
 
 const HomeHero = ({ isDarkMode }) => {
+  const token = localStorage.getItem('token');
   return (
     <div className={`homehero ${isDarkMode ? "dark" : ""}`}>
 
@@ -23,9 +24,15 @@ const HomeHero = ({ isDarkMode }) => {
         Know your legal rights with tecosys anytime (For <span className="text-indigo-600">Customers</span>)
         </p>
       </div>
-      <div className="homehero_bot">
+      {token?(
+        <div className="homehero_bot">
         <a href="/casesearch" className="homehero_bot_button">Explore<ArrowForward className="explore-logo"/></a>
       </div>
+      ):(
+        <div className="homehero_bot">
+        <a href="/auth-user" className="homehero_bot_button">Start Now<ArrowForward className="explore-logo"/></a>
+      </div>
+      )}
     </div>
   );
 };
