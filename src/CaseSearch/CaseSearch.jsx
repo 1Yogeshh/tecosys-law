@@ -47,7 +47,7 @@ const CaseSearch = () => {
     setErrorMessage("");
     try {
       const response = await axios.post(
-        "http://law-api.tecosys.ai/legal-solutions/case-search-query/",
+        "https://law-api.tecosys.ai/legal-solutions/case-search-query/",
         { search_query: searchQuery }
       );
       if (response.status === 200) {
