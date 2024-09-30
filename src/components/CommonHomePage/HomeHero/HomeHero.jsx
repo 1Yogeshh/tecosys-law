@@ -24,7 +24,7 @@ const HomeHero = ({ isDarkMode }) => {
         </p>
       </div>
       <div className="homehero_bot">
-        <button className="homehero_bot_button">Explore<ArrowForward className="explore-logo"/></button>
+        <a href="/casesearch" className="homehero_bot_button">Explore<ArrowForward className="explore-logo"/></a>
       </div>
     </div>
   );
