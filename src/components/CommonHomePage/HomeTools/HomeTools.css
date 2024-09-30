@@ -1,0 +1,110 @@
+.hometools-section {
+  background-image: url("../assets/Frame 26.png");
+  background-size: cover;
+  background-position: center;
+  padding: 50px 20px;
+  overflow: hidden;
+  margin: 0 30px 30px;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  margin: 0; /* Ensure no margin is causing the gap */
+  padding: 50px 20px; /* Maintain padding if needed */
+  box-sizing: border-box;
+}
+
+.hometools-section.dark-mode {
+  background: rgba(0, 0, 0, 1); /* Solid dark background */
+  width: 100%;
+  margin: 0; /* Ensure no margin is causing the gap */
+  padding: 50px 20px; /* Maintain padding if needed */
+  box-sizing: border-box;
+}
+
+.hometools-background {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;
+}
+
+.hometools-header {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.hometools-section.dark-mode .hometools-header h3,
+.hometools-section.dark-mode .hometools-header h2 {
+  color: #fff; /* Change header text color to white in dark mode */
+}
+
+.header-title {
+  font-family: "Inter", sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 41.17px;
+  letter-spacing: 0.05em;
+  color: #000000; /* Default black text */
+  padding: 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.header-subtitle {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 49.03px;
+  letter-spacing: 0.02em;
+  color: #000000; /* Default black text */
+  margin-top: 20px;
+}
+
+/* Cards container */
+.hometools-cards {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* Card styles */
+.card2 {
+  width: 300px; /* Default card background */
+  border-radius: 10px; /* Rounded corners for cards */
+  padding: 20px; /* Padding inside cards */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+
+
+.logo-card {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(79, 70, 229);
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.card_description_heading p {
+  color: black; /* Default text color */
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 8px;
+}
+
+/* Dark mode description text color */
+.hometools-section.dark-mode .card_description_heading p {
+  color: white; /* White text for heading in dark mode */
+}
+
+.desc p {
+  margin-top: 8px;
+  font-size: 15px;
+  color: rgb(53, 53, 53); /* Default text color */
+}
+
+/* Dark mode description text */
+.hometools-section.dark-mode .desc p {
+  color: #dddddd; /* Lighter gray text for description in dark mode */
+}

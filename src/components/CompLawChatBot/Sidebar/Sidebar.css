@@ -1,0 +1,112 @@
+.sidebar {
+  min-height: 100vh;
+  max-height: 100vh; /* Make sure sidebar has a maximum height */
+  /* overflow-y: auto;  */
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #f0f4f9;        /*#7e7d7d*/
+  padding: 25px 15px;
+}
+.sidebar .recent {
+  flex-grow: 1; /* Allow recent section to grow and take available space */
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 1.5s;
+}
+
+.sidebar .top {
+  flex-grow: 1;
+  /* overflow-y: auto; */
+  display: flex;
+  flex-direction: column;
+}
+.sidebar img {
+  width: 20px;
+}
+.sidebar .menu {
+  display: block;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.sidebar .new-chat {
+  margin-top: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  background-color: #e6eaf1;
+  border-radius: 50px;
+  font-size: 14px;
+  color: grey;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.sidebar-button {
+  /* margin-top: 50px; */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  background-color: #f0f4f9;
+  border-radius: 10px;
+  font-size: 14px;
+  /* color: grey; */
+  color: #808080;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.sidebar-button:hover{
+  background-color: #e6eaf1;
+}
+
+.sidebar .recent {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 1.5s;
+}
+
+.sidebar .recent-title {
+  font-size: 15px;
+}
+.sidebar .recent-entry {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  padding: 10px;
+  padding-right: 40px;
+  border-radius: 50px;
+  color: #282828;
+  cursor: pointer;
+  background-color: #a9c9f1;
+  margin-bottom: 10px;
+}
+.sidebar .recent-entry:hover {
+  background-color: #e2e6eb;
+}
+.sidebar .bottom {
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 20px; */
+}
+.sidebar .bottom-item {
+  padding-right: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 50px;
+  background-color: #e2e6eb;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: #282828;
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+}

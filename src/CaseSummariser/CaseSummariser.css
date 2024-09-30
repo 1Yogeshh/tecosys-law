@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+.case-background {
+  display: flex;
+  background-color: #f4f4f5;
+
+  /* background-image: url("../components/CommonHomePage/assets/case-image.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow-y: hidden;
+}
+
+.case-background .cs-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 22px;
+  padding-top: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  color: #585858;
+}
+
+.cs-nav img {
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.case-summariser-container .intro1{
+  font-size: 32px;
+  font-weight: 700;
+  font-family: Montserrat, sans-serif;
+  color: #4f46e5;
+  margin-top: 10px;
+}
+.case-summariser-container .intro2{
+  font-size: 16px;
+  font-weight: 500;
+
+  color: var(--secondary-color);
+}
+
+.case-summariser-container {
+  width: 100%;
+  display: flex;   
+  flex-direction: column;      
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+.query-input-box {
+  padding: 10px;
+  min-width: 70vw;
+  display: flex;   
+  flex-direction: column;      
+  align-items: center;
+  gap: 25px;
+}
+
+.query-input-box .dropzone {
+  border: 2px dotted #a8aba9;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  min-height: 30vh;
+  min-width: 70%;
+  color: #a8aba9;
+}
+
+.query-input-box .dropzone.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 0.8;
+  border-color: #80deea;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  min-height: 30vh;
+  min-width: 70%;
+}
+
+.query-input-box .case-input {
+  /* background-color: black; */
+  color: black;
+  /* border: 1px solid #aea7a7;
+  padding: 10px;
+  border-radius: 12px; */
+  min-width: 70%;
+  height: 50px;
+  box-sizing: border-box;
+  font-size: 14px;
+  /* box-shadow: 0 4px 8px rgba(160, 155, 155, 0.5); */
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  background-color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  height: 50px;
+  /* min-width: 50vw; */
+  border: none;
+  outline: none;
+}
+
+.query-input-box .case-input ::placeholder{
+  color: black;
+  font-size: 14px;
+}
+
+.case-input[type="file"]::-webkit-file-upload-button {
+  background: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  float: right;
+}
+
+.case-btn2 {
+  background: #4f46e5;
+  color: white;
+  border: 2px solid #4f46e5;
+  border-radius: 12px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 100px;
+}
+
+
+.summary-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Ensure content aligns to the top */
+  align-items: center;
+  width: 80%;
+  color: black;
+  padding: 12px;
+  max-height: 78vh; /* Restrict the max height */
+  overflow-y: auto;
+  flex-grow: 1;
+  white-space: normal;
+  word-wrap: break-word; 
+  line-height: 2.3rem;
+  word-spacing: 0.05em;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-size: "18px";
+}
+
+.summarize-btn {
+  position: absolute;
+  bottom: 20px; /* Fix the button 20px from the bottom */
+  left: 60%;
+  transform: translateX(-50%); /* Center the button horizontally */
+  width: auto;
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+
+.summary-wrapper {
+  position: relative; /* Ensure the button is positioned relative to this wrapper */
+  width: 70%; /* Adjust as necessary */
+  height: 100%; /* Take full height of the available space */
+}
+
+

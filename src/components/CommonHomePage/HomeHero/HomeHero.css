@@ -1,0 +1,137 @@
+/* Styles for HomeHero */
+.homehero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 90vh;
+  padding-top: 10vh;
+  margin-top: 10px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.7); /* Light mode background */
+  transition: background-color 0.3s ease;
+}
+
+.homehero.dark {
+  background-color: #000000; /* Dark mode background */
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 80%;
+}
+
+.homehero_content {
+  text-align: center;
+  color: white;
+  z-index: 1;
+}
+
+.homehero_content .heading {
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 80px;
+  color: #000; 
+  letter-spacing: 1px;
+}
+
+.homehero.dark .homehero_content .heading {
+  color: #fff; /* Dark mode text color */
+}
+.heading span{
+  color: rgb(79 70 229);
+  letter-spacing: 1px;
+}
+.homehero_content .content {
+  color: rgb(85, 84, 84); /* Default text color */
+  width: 850px;
+  font-family: "Inter", sans-serif;
+  margin: 0 auto;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 27px;
+  margin-top: 20px;
+  font-weight: 400;
+}
+
+.homehero.dark .homehero_content .content {
+  color: #fff; /* Dark mode text color */
+}
+
+
+
+.homehero_bot {
+  position: relative;
+}
+
+.homehero_bot_button {
+  width: 237px;
+  height: 60px;
+  border-radius: 5px;
+  outline: none;
+  font-weight: 500;
+  border: none;
+  background-color: rgb(79 70 229); /* Default button background */
+  color: #fff; /* Default button text color */
+  font-size: 17px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  font-family: "Inter", sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.homehero.dark .homehero_bot_button  {
+  color: rgb(79 70 229); 
+  background-color: #ffffff;
+}
+
+.homehero_bot_button:hover {
+  background-color: rgb(47, 46, 46);
+  color:white;
+}
+.explore-logo{
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.introduction{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+.introduction1{
+  width: 250px;
+  color: black;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 30px;
+  height: 40px;
+  background-color: white;
+  display: flex;
+  border: 1px solid gray;
+
+}
+.introduction p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 600;
+}
