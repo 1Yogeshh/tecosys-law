@@ -47,8 +47,8 @@ const HomeHero = ({ isDarkMode }) => {
 
         {/* Toggle section */}
         <div className="homehero_content space-y-5 flex-1 -mt-32 lg:w-[600px] w-[400px]">
-          <div className="mt-32 h-[150px] flex flex-col items-center justify-start overflow-hidden whitespace-pre-wrap border border-gray-300 rounded-lg shadow-md bg-indigo-600">
-            <p className="text-white font-bold text-xl lg:text-2xl tracking-wider pl-5 opacity-70">
+          <div className="mt-32 h-[150px] flex flex-col items-center justify-start overflow-hidden whitespace-pre-wrap border border-gray-300 rounded-lg shadow-md ">
+            <p className="text-black font-bold text-xl lg:text-2xl tracking-wider pl-5 opacity-70">
               {displayedText}
             </p>
           </div>

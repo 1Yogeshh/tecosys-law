@@ -82,6 +82,20 @@ html {
   margin-bottom: 12px;
 }
 
+/* responsive mid navbar ----------------------------->>>*/
+
+.homenavbar_mid {
+  /* Initially hidden for small and medium screens */
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .homenavbar_mid {
+    display: flex;
+    gap: 20px;
+  }
+}
+
 .homenavbar_mid ul {
   list-style: none;
   display: flex;
@@ -112,6 +126,12 @@ html {
   gap: 20px;
   margin-right: 60px;
 }
+@media (max-width: 768px) {
+  .homenavbar_right {
+    display: none; /* Hide right section on small screens */
+  }
+}
+
 .a-logo{
   color: rgb(79 70 229);
   height: 20px;
