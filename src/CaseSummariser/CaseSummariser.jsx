@@ -8,6 +8,7 @@ import CancelTwoToneIcon from '@mui/icons-material/CancelTwoTone';
 import ProfileIconDropDown from "../CommonFiles/ProfileIconDropdown.jsx"
 import {assets} from "../components/CompLawChatBot/assets/assets.js"
 import SideNavbar from "../Sidenavbar/SideNavbar.jsx";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -24,6 +25,19 @@ const CaseSummariser = () => {
 
   const inputRef = useRef(null);
   const navRef = useRef(null);
+  const navigate=useNavigate()
+
+  const token = localStorage.getItem('token'); // Retrieve token from localStorage
+
+  useEffect(() => {
+    // Check if token exists
+    if (token) {
+      // Redirect to home page
+      navigate('/casesummariser'); // Change '/home' to your home route
+    }else{
+      navigate('/auth-user');
+    }
+  }, [token, navigate]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

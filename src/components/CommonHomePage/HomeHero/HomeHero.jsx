@@ -5,6 +5,7 @@ import img6 from "../assets/white version.png";
 import { ArrowForward, AutoAwesome } from "@mui/icons-material";
 
 const HomeHero = ({ isDarkMode }) => {
+<<<<<<< HEAD
   // addting toggle feature
   const [selected, setSelected] = useState('lawyers');
   const [displayedText, setDisplayedText] = useState('');
@@ -32,6 +33,9 @@ const HomeHero = ({ isDarkMode }) => {
     }
   }, [index, currentText]);
 
+=======
+  const token = localStorage.getItem('token');
+>>>>>>> 5ce6c09ccc5f015d0cb039a316b05ec24cbaf233
   return (
     <div className={`homehero ${isDarkMode ? "dark" : ""}`}>
 
@@ -77,12 +81,25 @@ const HomeHero = ({ isDarkMode }) => {
         <p className="content" style={{fontWeight:"500"}}>
         Simplifying the law documents with advanced AI technologies (For <span className="text-indigo-600">Lawyers</span>)<br></br>
         Know your legal rights with tecosys anytime (For <span className="text-indigo-600">Customers</span>)
+<<<<<<< HEAD
         </p> */}
         {/* </div> */}
         <div className="homehero_bot">
           <a href="/casesearch" className="homehero_bot_button">Explore<ArrowForward className="explore-logo" /></a>
         </div>
+=======
+        </p>
       </div>
+      {token?(
+        <div className="homehero_bot">
+        <a href="/casesearch" className="homehero_bot_button">Explore<ArrowForward className="explore-logo"/></a>
+>>>>>>> 5ce6c09ccc5f015d0cb039a316b05ec24cbaf233
+      </div>
+      ):(
+        <div className="homehero_bot">
+        <a href="/auth-user" className="homehero_bot_button">Start Now<ArrowForward className="explore-logo"/></a>
+      </div>
+      )}
     </div>
   );
 };
