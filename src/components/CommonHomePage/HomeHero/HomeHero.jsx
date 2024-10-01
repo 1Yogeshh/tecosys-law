@@ -5,8 +5,7 @@ import img6 from "../assets/white version.png";
 import { ArrowForward, AutoAwesome } from "@mui/icons-material";
 
 const HomeHero = ({ isDarkMode }) => {
-<<<<<<< HEAD
-  // addting toggle feature
+  // Adding toggle feature
   const [selected, setSelected] = useState('lawyers');
   const [displayedText, setDisplayedText] = useState('');
   const [index, setIndex] = useState(0);
@@ -33,26 +32,22 @@ const HomeHero = ({ isDarkMode }) => {
     }
   }, [index, currentText]);
 
-=======
+  // Getting token from local storage
   const token = localStorage.getItem('token');
->>>>>>> 5ce6c09ccc5f015d0cb039a316b05ec24cbaf233
+
   return (
     <div className={`homehero ${isDarkMode ? "dark" : ""}`}>
-
       <div className="homehero_content">
-
-
         <div className="introduction">
           <div className="introduction1">
             <span><AutoAwesome style={{ height: "20px", marginTop: "5px", color: "yellow" }} /></span>
-
             <p>Introducing TecosysLaw <ArrowForward style={{ height: "20px", marginTop: "5px", color: "gray" }} /></p>
           </div>
         </div>
 
-        {/* toggle section */}
-        <div className="homehero_content space-y-5 flex-1 -mt-32  lg:w-[600px] w-[400px]">
-          <div className="mt-32  h-[150px] flex flex-col items-center justify-start overflow-hidden whitespace-pre-wrap border border-gray-300 rounded-lg shadow-md bg-indigo-600">
+        {/* Toggle section */}
+        <div className="homehero_content space-y-5 flex-1 -mt-32 lg:w-[600px] w-[400px]">
+          <div className="mt-32 h-[150px] flex flex-col items-center justify-start overflow-hidden whitespace-pre-wrap border border-gray-300 rounded-lg shadow-md bg-indigo-600">
             <p className="text-white font-bold text-xl lg:text-2xl tracking-wider pl-5 opacity-70">
               {displayedText}
             </p>
@@ -76,30 +71,18 @@ const HomeHero = ({ isDarkMode }) => {
             </div>
           </div>
         </div>
-        {/* <p className="heading">We Are <span>Experts</span> In</p>
-        <p className="heading">We Fight For Right</p>
-        <p className="content" style={{fontWeight:"500"}}>
-        Simplifying the law documents with advanced AI technologies (For <span className="text-indigo-600">Lawyers</span>)<br></br>
-        Know your legal rights with tecosys anytime (For <span className="text-indigo-600">Customers</span>)
-<<<<<<< HEAD
-        </p> */}
-        {/* </div> */}
-        <div className="homehero_bot">
-          <a href="/casesearch" className="homehero_bot_button">Explore<ArrowForward className="explore-logo" /></a>
-        </div>
-=======
-        </p>
+
+        {/* Conditional button based on token */}
+        {token ? (
+          <div className="homehero_bot">
+            <a href="/casesearch" className="homehero_bot_button">Explore<ArrowForward className="explore-logo" /></a>
+          </div>
+        ) : (
+          <div className="homehero_bot">
+            <a href="/auth-user" className="homehero_bot_button">Start Now<ArrowForward className="explore-logo" /></a>
+          </div>
+        )}
       </div>
-      {token?(
-        <div className="homehero_bot">
-        <a href="/casesearch" className="homehero_bot_button">Explore<ArrowForward className="explore-logo"/></a>
->>>>>>> 5ce6c09ccc5f015d0cb039a316b05ec24cbaf233
-      </div>
-      ):(
-        <div className="homehero_bot">
-        <a href="/auth-user" className="homehero_bot_button">Start Now<ArrowForward className="explore-logo"/></a>
-      </div>
-      )}
     </div>
   );
 };
