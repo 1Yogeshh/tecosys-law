@@ -48,18 +48,18 @@ const HomeNavbar = ({ onToggleDarkMode }) => {
       }`}
     >
       <div className="homenavbar_left">
-        <Link to={"/"}>
+        <a href="/">
           <h1>TE<span>COSYS</span>LAWS</h1>
-        </Link>
+        </a>
       </div>
 
       <div className="homenavbar_mid">
         <ul>
             <li>
-              <a><Home style={{height:'18px'}} className="a-logo"/>Home</a>
-              <a><Category style={{height:'18px'}} className="a-logo"/>Practice Areas</a>
-              <a><Bolt style={{height:'18px'}} className="a-logo"/>Case Result</a>
-              <a><ConnectWithoutContact style={{height:'18px'}} className="a-logo"/>Contacts</a>
+              <a href="/"><Home style={{height:'18px'}} className="a-logo"/>Home</a>
+              <a href="https://tecosys.in"><Category style={{height:'18px'}} className="a-logo"/>About us </a>
+              <a><Bolt style={{height:'18px'}} className="a-logo"/>Teams</a>
+              <a href="#security-section"><ConnectWithoutContact style={{height:'18px'}} className="a-logo"/>Security</a>
             </li>
         </ul>
       </div>

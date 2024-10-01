@@ -75,12 +75,12 @@
 .homehero_bot_button {
   width: 237px;
   height: 60px;
-  border-radius: 5px;
+  border-radius: 8px;
   outline: none;
   font-weight: 500;
   border: none;
   background-color: rgb(79 70 229); /* Default button background */
-  color: #fff; /* Default button text color */
+  color: #fff;
   font-size: 17px;
   display: flex;
   flex-direction: row;
@@ -91,6 +91,7 @@
   letter-spacing: 1px;
   font-family: "Inter", sans-serif;
   transition: background-color 0.3s, color 0.3s;
+  margin: auto;
 }
 
 .homehero.dark .homehero_bot_button  {
@@ -125,7 +126,7 @@
   background-color: white;
   display: flex;
   border: 1px solid gray;
-
+  margin-bottom: 20px;
 }
 .introduction p {
   display: flex;

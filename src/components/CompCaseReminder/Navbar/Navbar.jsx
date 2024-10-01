@@ -22,7 +22,7 @@ const Navbar = () => {
             <h1>E-Drafting</h1>
           </Link>
         </div>
-        <div className="menu-icons" onClick={() => setClicked((prev) => !prev)}>
+        <div  onClick={() => setClicked((prev) => !prev)}>
           <i className={clicked ? "fas fa-times" : "fas fa-bars"}></i>
           {/* <i className="fas fa-times"></i> */}
         </div>

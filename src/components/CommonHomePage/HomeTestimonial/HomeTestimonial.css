@@ -7,9 +7,6 @@
 }
 
 .recent-case-studies {
-  width: 541px;
-  height: 68px;
-  margin: 0 auto;
   text-align: center;
   color: #000000;
   padding: 10px;
@@ -18,7 +15,6 @@
 
 .recent-case-studies h2 {
   font-family: "Josefin Sans", sans-serif;
-  font-size: 40px;
   font-weight: 700;
   line-height: 49.03px;
   letter-spacing: 0.02em;
@@ -44,8 +40,6 @@
 }
 
 .ask-for-any-case {
-  width: 1040px;
-  height: 220px;
   margin: 20px auto;
   padding: 20px;
   color: #ffffff;
@@ -221,7 +215,7 @@
 
 .button-div {
   font-family: "Josefin Sans", sans-serif;
-  font-size: 40px;
+  /* font-size: 40px; */
   font-weight: 700;
   line-height: 49.03px;
   letter-spacing: 0.02em;

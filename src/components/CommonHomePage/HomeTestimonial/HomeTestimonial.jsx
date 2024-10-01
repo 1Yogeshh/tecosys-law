@@ -84,10 +84,10 @@ const HomeTestimonial = ({ isDarkMode }) => {
   ];
 return (
   <div className={`home-testimonial ${isDarkMode ? "dark-mode" : ""}`}>
-    <div className="recent-case-studies">
-      <h2>Recent Case Studies</h2>
+    <div className="recent-case-studies ml-[0px] md:mx-auto lg:text-center">
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl text-center">Recent Case Studies</h2>
     </div>
-    <div className="ask-for-any-case">
+    <div className="ask-for-any-case w-[350px] lg:w-full h-[90px]  -ml-[30px]">
       <input
         type="text"
         placeholder="Ask for any case..."
@@ -130,7 +130,7 @@ return (
       </Slider>
     </div>*/}
 
-    <div className="parent-div">
+    <div className="parent-div text-2xl sm:text-3xl lg:text-4xl">
       <div className="button-div">Supported By</div>
     </div>
     <Slider {...ltrSettings} className="logo-container">
@@ -148,8 +148,8 @@ return (
         </div>
       </Slider>
 
-      <div className="parent-div">
-      <div className="button-div">Security & Compliances</div>
+      <div className="parent-div text-2xl sm:text-3xl lg:text-4xl" id="security-section">
+      <div className="button-div ">Security & Compliances</div>
     </div>
     <Slider {...rtlSettings} className="logo-container">
         <div className="logo-item">

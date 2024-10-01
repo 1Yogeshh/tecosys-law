@@ -3,8 +3,8 @@ import "./HomeFooter.css";
 
 const HomeFooter = ({ isDarkMode }) => {
   return (
-    <div className={`footer ${isDarkMode ? "dark" : ""}`}>
-      <div className="footer_top">
+    <div className={`footer ${isDarkMode ? "dark" : ""} `}>
+      <div className="footer_top ">
         <div className="left_footer">
           <div className="lo">
             {/* <img src={image2} alt="" /> */}
@@ -57,7 +57,7 @@ const HomeFooter = ({ isDarkMode }) => {
             <a href="/">Return Policy</a>
             <a href="/">Cookie Policy</a>
           </div>
-          <div className="div4">
+          <div className="div4  sm:mt-[-60px]  lg:mt-[0px]">
             <h4>Contact</h4>
             <a href="/">
               <i className="fa-solid fa-phone"></i>+(123) 456-789
@@ -71,13 +71,13 @@ const HomeFooter = ({ isDarkMode }) => {
           </div>
         </div>
       </div>
-      <div className="footer_bottom2">
+      <div className="footer_bottom2 mt-[-30px] lg:mt-[20px] text-[15px] lg:text-[18px]">
         <p>
           We empower technology to bridge the gap between law and innovation.
           Please note, we are not a law firm.
         </p>
       </div>
-      <div className="footer_bottom">
+      <div className="footer_bottom sm:mt-[20px] ">
         <p>© 2024 LawCrats. All Rights Reserved.</p>
       </div>
     </div>

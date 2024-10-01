@@ -72,7 +72,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="footer_bottom">
+      <div className="footer_bottom custom-mt">
         <p>© 2024 LawCrats. All Rights Reserved.</p>
       </div>
     </div>

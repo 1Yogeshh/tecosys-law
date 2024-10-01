@@ -40,7 +40,6 @@
 
 .header-title {
   font-family: "Inter", sans-serif;
-  font-size: 34px;
   font-weight: 700;
   line-height: 41.17px;
   letter-spacing: 0.05em;
@@ -52,7 +51,6 @@
 
 .header-subtitle {
   font-family: "Josefin Sans", sans-serif;
-  font-size: 40px;
   font-weight: 700;
   line-height: 49.03px;
   letter-spacing: 0.02em;
@@ -66,14 +64,28 @@
   justify-content: space-evenly;
 }
 
+@media (max-width:400px){
+  .hometools-cards{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+}
+@media (min-width: 401px) and (max-width: 600px) {
+  .hometools-cards{
+    width: 20px;
+
+  }
+}
 /* Card styles */
 .card2 {
-  width: 300px; /* Default card background */
-  border-radius: 10px; /* Rounded corners for cards */
-  padding: 20px; /* Padding inside cards */
-  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  width: 300px;
+  border-radius: 10px; 
+  padding: 20px; 
+  transition: background-color 0.3s; 
 }
-
 
 
 .logo-card {

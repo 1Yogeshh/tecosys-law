@@ -11,12 +11,12 @@ const Hometools = ({ isDarkMode }) => {
       <div className="hometools-background">
         <div className="hometools-content">
           <div className="hometools-header">
-            <h3 className="header-title">What We Do</h3>
-            <h2 className="header-subtitle">We Assign Tools For Clients</h2>
+            <h3 className="header-title lg:text-4xl text-3xl md:text-2xl">What We Do</h3>
+            <h2 className="header-subtitle text-2xl md:text-3xl lg:text-5xl ml-5">We Assign Tools For Clients</h2>
           </div>
 
 
-          <div className="hometools-cards">
+          <div className="hometools-cards ">
             <div className="card2">
               <div className="card-description">
                 <div className="card_description_heading">
@@ -34,6 +34,7 @@ const Hometools = ({ isDarkMode }) => {
                 </div>
               </div>
             </div>
+
             <Link to={"/casesearch"}>
               <div className="card2">
                 <div className="card-description">
@@ -53,6 +54,7 @@ const Hometools = ({ isDarkMode }) => {
                 </div>
               </div>
             </Link>
+            
             <Link to={"/casesummariser"}>
               <div className="card2">
                 <div className="card-description">
