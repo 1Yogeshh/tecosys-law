@@ -9,8 +9,24 @@ import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import { IconButton } from "@mui/material";
 import SideNavbar from "../Sidenavbar/SideNavbar.jsx";
 import { useNavigate } from "react-router-dom";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 const CaseSearch = () => {
+
+  const carouselRef = useRef(null);
+
+  const scroll = (direction) => {
+    const scrollAmount = 500;
+
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   const [showPIDropdown, setShowPIDropdown] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchQueryResultArray, setSearchQueryResultArray] = useState([]);
@@ -176,53 +192,52 @@ const CaseSearch = () => {
         {/* Loading state */}
         {loading && <p>Loading...</p>}
 
-        {/* Display search results */}
-        {!isSearchSummaryCalled && !loading && (
-          <div className="case-search-small-card">
+        <div className="relative w-full flex items-center">
+          {/* Back button */}
+          <button
+            onClick={() => scroll("left")}
+            className="absolute left-0 z-10 bg-gray-300 p-2 rounded-full opacity-20"
+          >
+           <ChevronLeftIcon/>
+          </button>
+
+          {/* Card container (carousel) */}
+          <div
+            ref={carouselRef}
+            className="case-search-small-card flex gap-8 overflow-x-auto scrollbar-hide scroll-smooth px-4"
+          >
             {Array.isArray(searchQueryResultArray) &&
               searchQueryResultArray.map((item, index) => (
-                <div className="smallCard" key={index}>
-                  <p
-                    style={{
-                      fontSize: "13px",
-                      minWidth: "200px",
-                      whiteSpace: "normal",
-                      wordWrap: "break-word",
-                      overflow: "hidden",
-                      backgroundColor: "#c4c7c5",
-                      borderRadius: "4px",
-                      padding: "3px 0",
-                    }}
-                  >
-                    {item.case_title}
-                  </p>
-                  <p style={{ fontSize: "13px", padding: "3px 0" }}>
-                    Case No.- {item.case_no}
-                  </p>
+                <div
+                  className="smallCard bg-white shadow-md rounded-lg p-2 flex-shrink-0 w-64"
+                  key={index}
+                >
+                  <p className="text-sm font-semibold mb-2 text-indigo-600">{item.case_title}</p>
+                  <p className="text-sm mb-4">Case No.- {item.case_no}</p>
                   <span
-                    className="onHoverSpan"
+                    className="onHoverSpan flex items-center gap-2 cursor-pointer "
                     onClick={() => window.open(item.pdf_link, "_blank")}
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      fontSize: "13px",
-                      alignItems: "center",
-                      gap: "15px",
-                      width: "100%",
-                    }}
                   >
                     <AttachmentOutlinedIcon /> Read the Document
                   </span>
                   <button
                     onClick={() => handleGetSearchSummaryByIndex(item.index)}
-                    className="summary-button"
+                    className="summary-button mt-4 bg-indigo-600 text-white px-4 py-2 rounded-lg"
                   >
                     Show Summary
                   </button>
                 </div>
               ))}
           </div>
-        )}
+
+          {/* Forward button */}
+          <button
+            onClick={() => scroll("right")}
+            className="absolute right-0 z-10 bg-gray-300 p-2 rounded-full opacity-20"
+          >
+           <ChevronRightIcon/>
+          </button>
+        </div>
 
         {/* Display case summary */}
         {isSearchSummaryCalled && !loading && (
@@ -276,18 +291,18 @@ const CaseSearch = () => {
 
         {/* Search History Section */}
         {!isSearchSummaryCalled && searchHistory.length > 0 && (
-          <div className="search-history">
-            <h3>History</h3>
+          <div className="search-history bg-white shadow-md rounded-lg p-4">
+            <h3 className="text-center text-xl font-600 font-bold mb-3">History</h3>
             <ul>
               {searchHistory.map((entry, index) => (
                 <li key={index}>
-                  <span className="hover:cursor-pointer" onClick={() => handleReRunSearch(entry.query, entry.results)}>
+                  <span className="hover:cursor-pointer hover:bg-indigo-600 hover:text-white p-1" onClick={() => handleReRunSearch(entry.query, entry.results)}>
                     {entry.query} - {entry.timestamp}
                   </span>
                 </li>
               ))}
             </ul>
-            <button onClick={handleClearHistory}>Clear History</button>
+            <button className="mt-4 bg-indigo-600 text-white px-4 py-2 rounded-lg "  onClick={handleClearHistory}>Clear History</button>
           </div>
         )}
       </div>

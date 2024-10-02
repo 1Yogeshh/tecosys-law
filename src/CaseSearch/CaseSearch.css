@@ -178,7 +178,7 @@
 }
 
 .smallCard {
-  background-color: white;
+  /* background-color: rgb(127, 88, 88); */
   border: 1px solid #ccc;
   border-radius: 10px;
   align-items: center;
@@ -196,7 +196,8 @@
   padding: 3px;
 }
 .onHoverSpan:hover{
-  background-color: #c4c7c5;
+  background-color: #4f46e5;
+  color: white;
 }
 
 .generated-summary-container{
