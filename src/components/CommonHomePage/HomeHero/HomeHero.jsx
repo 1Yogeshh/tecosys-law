@@ -48,7 +48,7 @@ const HomeHero = ({ isDarkMode }) => {
 
         {/* Toggle section */}
         <div className="homehero_content space-y-3 flex-1 lg:w-[600px] w-[200px] mt-2">
-          <div className="lg:h-[110px] h-[150px] flex flex-col items-center justify-start overflow-hidden whitespace-pre-wrap">
+          <div className="lg:h-[110px] h-auto flex flex-col items-center justify-start overflow-hidden whitespace-pre-wrap">
             <p className="text-black font-bold font-sans text-3xl lg:w-[900px] w-[350px] lg:text-5xl tracking-wider fade-in-text">
               {displayedText.map((word, idx) => {
                 if (
