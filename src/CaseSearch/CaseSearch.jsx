@@ -17,15 +17,10 @@ const CaseSearch = () => {
   const [searchIndex, setSearchIndex] = useState("");
   const [summaryData, setSummaryData] = useState("");
   const [isSearchSummaryCalled, setIsSearchSummaryCalled] = useState(false);
-<<<<<<< HEAD
   const [loading, setLoading] = useState(false); // Loading state for fetching data
   const [errorMessage, setErrorMessage] = useState(""); // Error state
-  const [isDarkMode, setIsDarkMode] = useState(false);
-=======
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [isDarkMode, setIsDarkMode] = useState(false); // Dark mode state
   const [searchHistory, setSearchHistory] = useState([]); // State for search history
->>>>>>> c75a4b65cfccf6bc7945d60fb0e472f2394fa1d9
 
   const navRef = useRef(null);
   const navigate = useNavigate();
