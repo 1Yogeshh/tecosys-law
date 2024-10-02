@@ -5,6 +5,7 @@ import HomeAbout from "./components/CommonHomePage/HomeAbout/HomeAbout.jsx";
 import HomeTools from "./components/CommonHomePage/HomeTools/HomeTools.jsx";
 import HomeTestimonial from "./components/CommonHomePage/HomeTestimonial/HomeTestimonial.jsx";
 import HomeFooter from "./components/CommonHomePage/HomeFooter/HomeFooter.jsx";
+import CaseSearch from "./CaseSearch/CaseSearch.jsx";
 
 
 const CommonHomePage2 = () => {
@@ -21,7 +22,7 @@ const CommonHomePage2 = () => {
       {/*<HomeAbout isDarkMode={isDarkMode} />*/}
       <HomeTools isDarkMode={isDarkMode} />
       <HomeTestimonial isDarkMode={isDarkMode} />
-      <HomeFooter isDarkMode={isDarkMode} />
+      <HomeFooter isDarkMode={isDarkMode} />  
     </div>
   );
 };

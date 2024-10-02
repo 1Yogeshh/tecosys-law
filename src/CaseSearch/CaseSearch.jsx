@@ -19,6 +19,7 @@ const CaseSearch = () => {
   const [isSearchSummaryCalled, setIsSearchSummaryCalled] = useState(false);
   const [loading, setLoading] = useState(false); // Loading state for fetching data
   const [errorMessage, setErrorMessage] = useState(""); // Error state
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const navRef = useRef(null);
 
@@ -143,7 +144,6 @@ const CaseSearch = () => {
         {!isSearchSummaryCalled && (
           <p className="case-search-heading2">Get Details In A Blink!*</p>
         )}
-
         {/* Search input field */}
         {!isSearchSummaryCalled && (
           <div

@@ -41,6 +41,7 @@ function SideNavbar() {
         </NavLink>
       </div>
       <div className='h-[1px] w-[160px] mt-4 bg-gray-200'></div>
+      {/* My Profile Section */}
       <div className='mt-[25px]'>
         <NavLink
           to='/profile'

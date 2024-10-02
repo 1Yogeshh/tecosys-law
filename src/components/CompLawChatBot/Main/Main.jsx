@@ -6,6 +6,9 @@ import Popup from "../Popup/Popup.jsx";
 import LCLogoBlack from "../assets/LCLogoBlack.png";
 import FormattedContent from "../../../CommonFiles/FormattedContent.jsx";
 import ProfileIconDropDown from "../../../CommonFiles/ProfileIconDropdown.jsx";
+import SendIcon from "@mui/icons-material/Send";
+import IconButton from "@mui/material/IconButton";
+import tecosysLogo from "../../CompLawChatBot/assets/tecosysLogo.png"
 
 const Main = () => {
   const { chatHistory, setChatHistory } = useContext(Context);
@@ -15,6 +18,8 @@ const Main = () => {
   const [input, setInput] = useState("");
 
   const navRef = useRef(null);
+
+
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && input.trim()) {
@@ -99,14 +104,17 @@ const Main = () => {
 
   return (
     <div className="main">
-      {/*<div className="nav">
+      {/* <div className="nav">
         <img
           src={assets.user_icon}
           alt="profile-img"
           onClick={toggleDropdown}
           className="nav-img"
         />
-      </div>*/}
+      </div> */}
+      <div className="relative opacity-10 rounded-full w-[100px] h-[100px]">
+        <img src={tecosysLogo} alt="Tecosys-Logo" className="absolute top-[210px] left-[550px]" />
+      </div>
       <div ref={navRef}>
         <ProfileIconDropDown showProfileIconDropdown={showPIDropdown} />
       </div>
@@ -116,26 +124,26 @@ const Main = () => {
           <p className="intro2">Legal Issues? Ask Me!</p>
         </div>
         <>
-        {chatHistory.map((history, index) => (
-  <div key={`${history.question}-${index}`} className="result"> 
-    {history.isBot === false && (
-      <div className="result-title">
-        <img className="imgClassUser" src={assets.user_icon} alt="" />
-        <p className="promptClass">{history.question}</p>
-      </div>
-    )}
-    {history.isBot === true && (
-      <div className="result-response-part">
-        <div className="botImgContainer">
-          <img className="imgClassBot" src={LCLogoBlack} alt="" />
-        </div>
-        <div className="formatted-content-wrapper">
-          <FormattedContent text={history.answer} />
-        </div>
-      </div>
-    )}
-  </div>
-))}
+          {chatHistory.map((history, index) => (
+            <div key={`${history.question}-${index}`} className="result">
+              {history.isBot === false && (
+                <div className="result-title">
+                  <img className="imgClassUser" src={assets.user_icon} alt="" />
+                  <p className="promptClass">{history.question}</p>
+                </div>
+              )}
+              {history.isBot === true && (
+                <div className="result-response-part">
+                  <div className="botImgContainer">
+                    <img className="imgClassBot" src={LCLogoBlack} alt="" />
+                  </div>
+                  <div className="formatted-content-wrapper">
+                    <FormattedContent text={history.answer} />
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
         </>
         <div className="main-bottom">
           <div className="search-box">
@@ -147,17 +155,12 @@ const Main = () => {
               type="text"
               placeholder="Ask Me..."
             />
-            <div className="flex mt-[5px] gap-2">
-              <img className="h-[30px] w-[25px]" src={assets.gallery_icon} alt="" />
-              <img src={assets.mic_icon} alt="" className="h-[30px] w-[25px]" />
-              {input ? (
-                <img className="h-[30px] w-[25px]"
-                  onClick={() => handleSendQuestion(input)}
-                  src={assets.send_icon}
-                  alt=""
-                />
-              ) : null}
-            </div>
+            <IconButton
+              onClick={handleSendQuestion}
+              className="text-gray-600 hover:text-gray-800"
+            >
+              <SendIcon />
+            </IconButton>
           </div>
           <div className="bottom-info">
             <button onClick={() => setShowPremiumPopup(true)}>
