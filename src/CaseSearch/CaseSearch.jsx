@@ -17,30 +17,44 @@ const CaseSearch = () => {
   const [searchIndex, setSearchIndex] = useState("");
   const [summaryData, setSummaryData] = useState("");
   const [isSearchSummaryCalled, setIsSearchSummaryCalled] = useState(false);
+<<<<<<< HEAD
   const [loading, setLoading] = useState(false); // Loading state for fetching data
   const [errorMessage, setErrorMessage] = useState(""); // Error state
   const [isDarkMode, setIsDarkMode] = useState(false);
+=======
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [searchHistory, setSearchHistory] = useState([]); // State for search history
+>>>>>>> c75a4b65cfccf6bc7945d60fb0e472f2394fa1d9
 
   const navRef = useRef(null);
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
-  const navigate=useNavigate()
+  useEffect(() => {
+    if (token) {
+      navigate("/casesearch");
+    } else {
+      navigate("/auth-user");
+    }
+
+    // Load search history from localStorage when component mounts
+    const storedHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    setSearchHistory(storedHistory);
+  }, [token, navigate]);
 
   // Handle input query change
   const handleQuerySearchInput = (e) => {
     setSearchQuery(e.target.value);
   };
 
-  const token = localStorage.getItem('token'); // Retrieve token from localStorage
-
-  useEffect(() => {
-    // Check if token exists
-    if (token) {
-      // Redirect to home page
-      navigate('/casesearch'); // Change '/home' to your home route
-    }else{
-      navigate('/auth-user');
-    }
-  }, [token, navigate]);
+  // Save search query result to localStorage
+  const saveSearchHistory = (query, results) => {
+    const newEntry = { query, results, timestamp: new Date().toLocaleString() };
+    const updatedHistory = [newEntry, ...searchHistory];
+    setSearchHistory(updatedHistory);
+    localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
+  };
 
   // Fetch query result array (cases) from API
   const handleGetQueryResultArray = useCallback(async () => {
@@ -54,13 +68,16 @@ const CaseSearch = () => {
       if (response.status === 200) {
         const extractedData = response.data;
         setSearchQueryResultArray(extractedData);
+
+        // Save the search result to history
+        saveSearchHistory(searchQuery, extractedData);
       }
     } catch (error) {
       setErrorMessage("Internal Server Error. Please try again.");
     } finally {
       setLoading(false);
     }
-  }, [searchQuery]);
+  }, [searchQuery, searchHistory]);
 
   // Fetch case summary data by case index
   const handleGetSearchSummaryByIndex = useCallback(async (e) => {
@@ -113,32 +130,23 @@ const CaseSearch = () => {
     };
   }, [showPIDropdown]);
 
-  // Toggle profile dropdown
-  const toggleDropdown = () => {
-    setShowPIDropdown(!showPIDropdown);
+  // Clear search history
+  const handleClearHistory = () => {
+    setSearchHistory([]);
+    localStorage.removeItem("searchHistory");
+  };
+
+  // Re-run a search from history
+  const handleReRunSearch = (query, results) => {
+    setSearchQuery(query);
+    setSearchQueryResultArray(results);
   };
 
   return (
     <div className="case-search-main-container w-full">
       <div className="w-1/5">
-      <SideNavbar/>
+        <SideNavbar />
       </div>
-      {/* Navbar with profile icon */}
-      {/*<div className="case-search-nav">
-        <img
-          src={assets.user_icon}
-          alt="profile-img"
-          onClick={toggleDropdown}
-          className="case-search-nav-img"
-        />
-      </div>
-
-      {/* Profile dropdown */}
-      {/*<div ref={navRef}>
-        <ProfileIconDropDown showProfileIconDropdown={showPIDropdown} />
-      </div>*/}
-
-      {/* Main search content */}
       <div className="case-search-secondary-container">
         <p className="case-search-heading1">Case Search</p>
         {!isSearchSummaryCalled && (
@@ -155,6 +163,7 @@ const CaseSearch = () => {
               className="case-search-input"
               placeholder="Enter Case Name"
               onChange={handleQuerySearchInput}
+              value={searchQuery}
             />
             <IconButton
               onClick={handleGetQueryResultArray}
@@ -177,10 +186,7 @@ const CaseSearch = () => {
           <div className="case-search-small-card">
             {Array.isArray(searchQueryResultArray) &&
               searchQueryResultArray.map((item, index) => (
-                <div
-                  className="smallCard"
-                  key={index}
-                >
+                <div className="smallCard" key={index}>
                   <p
                     style={{
                       fontSize: "13px",
@@ -212,7 +218,6 @@ const CaseSearch = () => {
                   >
                     <AttachmentOutlinedIcon /> Read the Document
                   </span>
-                  {/* Add "Show Summary" Button */}
                   <button
                     onClick={() => handleGetSearchSummaryByIndex(item.index)}
                     className="summary-button"
@@ -254,23 +259,41 @@ const CaseSearch = () => {
                   style={{
                     display: "flex",
                     flexDirection: "row",
-                    justifyContent: "space-between",
+                    gap: "30px",
+                    width: "100%",
                   }}
                 >
-                  <div style={{ display: "flex", flexDirection: "row", gap: "30px" }}>
-                    <span>Decision Date:</span>
-                    <span>{summaryData["Decision Date"]}</span>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "row", gap: "30px" }}>
-                    <span>Disposal Nature:</span>
-                    <span>{summaryData["Disposal Nature"]}</span>
-                  </div>
+                  <span>Respondent Advocate:</span>
+                  <span>{summaryData["Respondent Advocate"]}</span>
                 </div>
-                <FormattedContent text={summaryData["Summary"]} />
               </div>
+
+              <FormattedContent />
+              <button
+                className="reset-button"
+                onClick={handleResetSearch}
+              >
+                Reset Search
+              </button>
             </div>
-            <button onClick={handleResetSearch}>Search Another Case</button>
           </>
+        )}
+
+        {/* Search History Section */}
+        {!isSearchSummaryCalled && searchHistory.length > 0 && (
+          <div className="search-history">
+            <h3>History</h3>
+            <ul>
+              {searchHistory.map((entry, index) => (
+                <li key={index}>
+                  <span className="hover:cursor-pointer" onClick={() => handleReRunSearch(entry.query, entry.results)}>
+                    {entry.query} - {entry.timestamp}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <button onClick={handleClearHistory}>Clear History</button>
+          </div>
         )}
       </div>
     </div>

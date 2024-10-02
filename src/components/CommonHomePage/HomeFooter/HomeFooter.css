@@ -295,15 +295,3 @@
     margin-left: 80px;
   }
 }
-
-@media (min-width: 540px) and (max-width: 800px) {
-  .footer {
-    margin-top: 600px;
-  }
-}
-
-@media (max-width: 540px) {
-  .footer {
-    margin-top: 250px;
-  }
-}

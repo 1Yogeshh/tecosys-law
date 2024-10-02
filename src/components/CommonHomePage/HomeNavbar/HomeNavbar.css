@@ -130,6 +130,13 @@ html {
   .homenavbar_right {
     display: none; /* Hide right section on small screens */
   }
+  .homenavbar_left h1 {
+    margin-left: 0px;
+  }
+  .homenav_bar {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 .a-logo{
