@@ -142,7 +142,7 @@ const CaseSearch = () => {
       <div className="w-1/5">
         <SideNavbar />
       </div>
-      <div className="case-search-secondary-container">
+      <div className="case-search-secondary-container w-4/5">
         <p className="case-search-heading1">Case Search</p>
         {!isSearchSummaryCalled && (
           <p className="case-search-heading2">Get Details In A Blink!*</p>

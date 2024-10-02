@@ -104,6 +104,10 @@ const Main = () => {
 
   return (
     <div className="main">
+      <div className="w-full flex flex-col justify-center items-center text-center">
+      <p className="text-indigo-600 text-[32px] tracking-wide font-medium">LawChatBot</p>
+      <p className="text-[16px] font-medium">Legal Issues? Ask Me!</p>
+      </div>
       {/* <div className="nav">
         <img
           src={assets.user_icon}
@@ -118,11 +122,7 @@ const Main = () => {
       <div ref={navRef}>
         <ProfileIconDropDown showProfileIconDropdown={showPIDropdown} />
       </div>
-      <div className="main-container">
-        <div className="greet">
-          <p className="intro1">LawChatBot</p>
-          <p className="intro2">Legal Issues? Ask Me!</p>
-        </div>
+      <div className="main-container lg:ml-[180px] ml-[10px]">
         <>
           {chatHistory.map((history, index) => (
             <div key={`${history.question}-${index}`} className="result">
@@ -145,8 +145,8 @@ const Main = () => {
             </div>
           ))}
         </>
-        <div className="main-bottom">
-          <div className="search-box">
+        <div className="main-bottom lg:w-[850px] w-[300px]">
+          <div className="search-box lg:max-w-[900px] lg:w-full w-[400px] lg:mr-0 mr-[240px]">
             <input
               name="input"
               onChange={(event) => setInput(event.target.value)}

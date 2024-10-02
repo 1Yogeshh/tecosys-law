@@ -238,4 +238,7 @@
   .spcl-input{
     right: 13%;
   }
+  .case-search-input{
+    margin-left: 20px;
+  }
 }

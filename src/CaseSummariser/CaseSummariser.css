@@ -39,6 +39,8 @@
   font-family: Montserrat, sans-serif;
   color: #4f46e5;
   margin-top: 10px;
+  display: flex;
+  text-align: center;
 }
 .case-summariser-container .intro2{
   font-size: 16px;
