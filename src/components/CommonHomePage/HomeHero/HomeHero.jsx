@@ -47,9 +47,9 @@ const HomeHero = ({ isDarkMode }) => {
         </div>
 
         {/* Toggle section */}
-        <div className="homehero_content space-y-3 flex-1 lg:w-[600px] w-[300px] mt-2">
+        <div className="homehero_content space-y-3 flex-1 lg:w-[600px] w-[200px] mt-2">
           <div className="lg:h-[110px] h-[150px] flex flex-col items-center justify-start overflow-hidden whitespace-pre-wrap">
-            <p className="text-black font-bold font-sans text-3xl w-[900px] lg:text-5xl tracking-wider fade-in-text">
+            <p className="text-black font-bold font-sans text-3xl lg:w-[900px] w-[350px] lg:text-5xl tracking-wider fade-in-text">
               {displayedText.map((word, idx) => {
                 if (
                   (selected === "lawyers" && (word === "AI" || word === "Technologies")) ||
@@ -67,7 +67,7 @@ const HomeHero = ({ isDarkMode }) => {
           </div>
 
           {/* Added descriptive paragraph */}
-          <p className=" text-gray-500 w-[1000px] text-[18px] flex  text-center ">
+          <p className=" text-gray-500 md:w-[1000px] w-[350px] text-[18px] flex  text-center ">
             At TecosysLaw, we aim to empower both lawyers and consumers with cutting-edge technology, providing streamlined access to legal documents and information. Our advanced AI technologies are here to simplify your legal needs, offering a seamless and user-friendly experience.
           </p>
 
