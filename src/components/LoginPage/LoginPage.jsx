@@ -313,7 +313,7 @@ const LoginPage = () => {
          </div>
 
           <a href="/forget-password" style={{ fontSize: "16px", color: "white", marginBottom: "10px",  fontWeight:'600' }}>Forgot password?</a>
-          <button className="buttonClass" type="submit">Log In</button>
+          <button className="buttonClass font-medium w-[300px] lg:w-4/5" type="submit">Log In</button>
           <div className="flex mt-2 text-white font-medium gap-2 lg:hidden">
             <p>Don't have and Account?</p>
             <button  id="signUp" className="underline" onClick={handleSignUpClick} style={{backgroundColor:'rgb(79 70 229)'}}>
