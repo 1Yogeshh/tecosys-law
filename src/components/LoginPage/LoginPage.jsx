@@ -184,7 +184,7 @@ const LoginPage = () => {
   return (
     <div
       className={`container ${isRightPanelActive ? "right-panel-active" : ""}`} id="container">
-      <div className="form-container sign-up-container">
+      <div className="form-container sign-up-container w-[400px] lg:w-1/2">
         <form className="dataSubmitForm" onSubmit={openOTPSection ? handleOtpSubmit : handleSignupDataSubmit}>
           {openOTPSection ? ( 
             <>
@@ -232,23 +232,32 @@ const LoginPage = () => {
               </a>
             </div>
             <p style={{color: "white", margin: "10px 0", fontSize: '16px', fontWeight:'500'}}>Or</p>
-            <input className="inputClass" name="name" value={signUpData.name} type="text" placeholder=" Enter your full name" onChange={handleSignUpDataChange} required={true} />
-            <input className="inputClass" name="username" value={signUpData.username} type="text" placeholder=" Enter your username" onChange={handleSignUpDataChange} required={true} />
-            <input className="inputClass" name="email" value={signUpData.email} type="email" placeholder="Enter your email address" onChange={handleSignUpDataChange} required={true} />
-            <div style={{ position: 'relative', width: '100%' }}>
+            <input className="inputClass w-full lg:w-4/5" name="name" value={signUpData.name} type="text" placeholder=" Enter your full name" onChange={handleSignUpDataChange} required={true} />
+            <input className="inputClass w-full lg:w-4/5" name="username" value={signUpData.username} type="text" placeholder=" Enter your username" onChange={handleSignUpDataChange} required={true} />
+            <input className="inputClass w-full lg:w-4/5" name="email" value={signUpData.email} type="email" placeholder="Enter your email address" onChange={handleSignUpDataChange} required={true} />
+            <div className="relative w-[370px] lg:w-full">
               <input className="inputClass" name="password" value={signUpData.password} type={showPassword ? 'text' : 'password'} placeholder="Enter your password" onChange={handleSignUpDataChange} style={{ width: '80%',}} required={true} />
               <IconButton onClick={togglePasswordVisibility} style={{ position: 'absolute', cursor: 'pointer', right: '60px', top: '50%', transform: 'translateY(-50%)', zIndex:'4', marginRight:'10px' }}>
                 {showPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
               </IconButton>
             </div>
 
-            <div style={{position: 'relative', width: '100%', marginBottom: '10px'}}>
+            <div className="relative mb-2 w-[370px] lg:w-full">
             <input className="inputClass" name="confirm_password" value={signUpData.confirm_password} type={showPassword ? 'text' : 'password'} placeholder="Enter your password" onChange={handleSignUpDataChange} style={{ width: '80%',}} required={true} />
               <IconButton onClick={toggleRetypePasswordVisibility} style={{ position: 'absolute', cursor: 'pointer', right: '60px', top: '50%', transform: 'translateY(-50%)', zIndex:'4', marginRight:'10px' }}>
                 {showRetypePassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
               </IconButton>
             </div>
-            <button className="buttonClass" type="submit">Sign Up</button>
+            <button className="buttonClass font-medium w-[300px] lg:w-4/5" type="submit">Sign Up</button>
+            <div className="flex mt-2 text-white font-medium gap-2 lg:hidden">
+            <p >
+              Already have an account!
+            </p>
+            <button  id="signIn" onClick={handleSignInClick} style={{backgroundColor:'rgb(79 70 229)'}}>
+              Log In
+            </button>
+          </div>
+            
             <p style={{margin: "12px 0", color: "white", fontSize: "12px", marginTop:'20px'}}>By continuing, you agree to LawCrats’s Terms of Use. Read our <span onClick={handlePrivacyPolicy} style={{cursor: "pointer", textDecorationLine: "underline"}}>Privacy Policy</span>.</p>
             
             <PrivacyPolicyModal open={openPrivacyPolicy} handleClose={handlePrivacyPolicy} />
@@ -256,7 +265,7 @@ const LoginPage = () => {
         )}
         </form>
       </div>
-      <div className="form-container sign-in-container">
+      <div className="form-container sign-in-container w-[400px] lg:w-1/2">
         <form className="dataSubmitForm" onSubmit={handleSigninDataSubmit}>
           <h1 className="h1Header">Log in into your account </h1>
           <div style={{margin: "20px 0"}}>
@@ -279,18 +288,41 @@ const LoginPage = () => {
             </a>
           </div>
           <span style={{color: "white", margin: "10px 0", fontSize: '16px', fontWeight:'600'}}>Or</span>
-          <input className="inputClass" name="email" value={signInData.email} type="email" placeholder="Enter your email address" onChange={handleSignInDataChange} required={true} />
-          <div style={{position: 'relative', width: '100%', marginBottom: '10px'}}>
-            <input className="inputClass" name="password" value={signInData.password} type={showSignInPassword ? 'text' : 'password'} placeholder="Enter your password" onChange={handleSignInDataChange} reuired="true" style={{ width: '80%', paddingRight: '40px' }} required={true} />
-            <IconButton onClick={toggleSignInPasswordVisibility} style={{ position: 'absolute', cursor: 'pointer', right: '60px', top: '50%', transform: 'translateY(-50%)', zIndex:'4', marginRight:'10px' }}>
-              {showSignInPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
-            </IconButton>
-          </div>
-          <a href="/forget-password" style={{ fontSize: "16px", color: "white", marginBottom: "10px", marginLeft:'380px', fontWeight:'600' }}>Forgot password?</a>
+          <input className="inputClass w-full lg:w-4/5 " name="email" value={signInData.email} type="email" placeholder="Enter your email address" onChange={handleSignInDataChange} required={true} />
+          <div className="relative mb-2 w-full lg:w-4/5">
+             <input
+             className="inputClass w-full p-2 pr-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+             name="password"
+             value={signInData.password}
+             type={showSignInPassword ? 'text' : 'password'}
+             placeholder="Enter your password"
+             onChange={handleSignInDataChange}
+             required
+              />
+             <button
+             onClick={toggleSignInPasswordVisibility}
+             className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+             type="button"
+             >
+            {showSignInPassword ? (
+            <VisibilityOffOutlined />
+            ) : (
+            <VisibilityOutlined />
+            )}
+           </button>
+         </div>
+
+          <a href="/forget-password" style={{ fontSize: "16px", color: "white", marginBottom: "10px",  fontWeight:'600' }}>Forgot password?</a>
           <button className="buttonClass" type="submit">Log In</button>
+          <div className="flex mt-2 text-white font-medium gap-2 lg:hidden">
+            <p>Don't have and Account?</p>
+            <button  id="signUp" className="underline" onClick={handleSignUpClick} style={{backgroundColor:'rgb(79 70 229)'}}>
+              Sign Up
+            </button>
+          </div>
         </form>
       </div>
-      <div className="overlay-container">
+      <div className="overlay-container hidden lg:block">
         <div className="overlay">
           <div className="overlay-panel overlay-left">
             <h1 className="h1Header">Hello Friend !</h1>

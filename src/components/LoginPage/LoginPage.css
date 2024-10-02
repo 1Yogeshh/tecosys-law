@@ -131,7 +131,6 @@
   font-weight: 600;
   height: 45px;
   letter-spacing: 1px;
-  width: 79%;
   transition: transform 80ms ease-in;
 }
 .buttonClass:hover{
@@ -178,7 +177,6 @@
   border: none;
   padding: 8px 10px;
   margin: 8px 0;
-  width: 80%;
   height: 45px;
   border-radius: 10px;
   font-size: 16px;
@@ -191,7 +189,6 @@
   padding: 8px 10px;
   padding-right: 5px;
   margin: 8px 0;
-  width: 80%;
   height: 45px;
   border-radius: 12px;
   font-size: 16px;
@@ -222,7 +219,6 @@
 
 .sign-in-container {
   left: 0;
-  width: 50%;
   z-index: 2;
 }
 
@@ -232,7 +228,6 @@
 
 .sign-up-container {
   left: 0;
-  width: 50%;
   opacity: 0;
   z-index: 1;
   align-items: center;
@@ -244,6 +239,14 @@
   z-index: 5;
   animation: show 0.6s;
 }
+@media (max-width: 500px) {  
+  .container.right-panel-active .sign-up-container {
+    transform: translateX(0%);
+    
+  }
+}
+
+
 
 @keyframes show {
   0%,
