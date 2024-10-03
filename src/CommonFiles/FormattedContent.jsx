@@ -67,7 +67,6 @@ const useStyles = makeStyles(()=>({
 }));
 const TypingEffect = ({ text }) => {
   const [displayedText, setDisplayedText] = useState('');
-  // Memoize words so it's recalculated only when `text` changes
   const words = useMemo(() => (text ? text.split(' ') : []), [text]);
   const typingSpeed = 70; // Delay in milliseconds per word
 

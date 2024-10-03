@@ -84,10 +84,11 @@ const HomeTestimonial = ({ isDarkMode }) => {
   ];
 return (
   <div className={`home-testimonial ${isDarkMode ? "dark-mode" : ""}`}>
-    <div className="recent-case-studies ml-[0px] md:mx-auto lg:text-center">
+    {/* Recent Case studies */}
+    {/* <div className="recent-case-studies ml-[0px] md:mx-auto lg:text-center">
       <h2 className="text-2xl sm:text-3xl lg:text-4xl text-center">Recent Case Studies</h2>
-    </div>
-    <div className="ask-for-any-case w-[350px] lg:w-full h-[90px]  -ml-[30px]">
+    </div> */}
+    {/* <div className="ask-for-any-case w-[350px] lg:w-full h-[90px]  -ml-[30px]">
       <input
         type="text"
         placeholder="Ask for any case..."
@@ -97,7 +98,9 @@ return (
       <div className={`login-message ${showLoginMessage ? "active" : ""}`}>
         Please login first
       </div>
-    </div>
+    </div> */}
+
+
     {/*<div className="feedback">
       <h3>Feedback from our users</h3>
     </div>

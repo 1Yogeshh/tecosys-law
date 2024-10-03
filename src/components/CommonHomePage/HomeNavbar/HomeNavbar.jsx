@@ -42,7 +42,7 @@ const HomeNavbar = ({ onToggleDarkMode }) => {
       {/* Logo */}
       <div className="homenavbar_left">
         <a href="/">
-          <h1>TE<span>COSYS</span>LAWS</h1>
+          <h1>TECOSYS <span>LAW</span></h1>
         </a>
       </div>
 
@@ -67,10 +67,10 @@ const HomeNavbar = ({ onToggleDarkMode }) => {
               <a className="gap-1 flex font-medium items-center" href="/"><Home style={{ height: '18px' }} className="a-logo" />Home</a>
             </li>
             <li>
-              <a href="https://tecosys.in" className="gap-1 flex font-medium items-center"><Category style={{ height: '18px' }} className="a-logo" />About us</a>
+              <a href="https://tecosys.in" target="_blank" className="gap-1 flex font-medium items-center"><Category style={{ height: '18px' }} className="a-logo" />About us</a>
             </li>
             <li>
-              <a className="gap-1 flex font-medium items-center"><Bolt style={{ height: '18px' }} className="a-logo" />Teams</a>
+              <a href="https://www.tecosys.in/teams" target="_blank" className="gap-1 flex font-medium items-center"><Bolt style={{ height: '18px' }} className="a-logo" />Teams</a>
             </li>
             <li>
               <a href="#security-section" className="gap-1 flex font-medium items-center"><ConnectWithoutContact style={{ height: '18px' }} className="a-logo" />Security</a>
@@ -88,16 +88,17 @@ const HomeNavbar = ({ onToggleDarkMode }) => {
       <div className="homenavbar_right hidden md:flex items-center gap-6">
         <ul className="flex gap-8 font-medium mr-[100px]">
             <li>
-              <a href="/" className="gap-1 flex justify-center items-center"><Home style={{ height: '18px' }} className="a-logo" />Home</a>
+              <a href="/" className="gap-1 flex justify-center items-center nav-text" style={{ color: isDarkMode ? "white" : "black"}} ><Home style={{ height: '18px' }} className="a-logo"  />Home
+              </a>
             </li>
             <li>
-              <a href="https://tecosys.in" className="gap-1 flex justify-center items-center"><Category style={{ height: '18px' }} className="a-logo" />About us</a>
+              <a href="https://tecosys.in" target="_blank" className="gap-1 flex justify-center nav-text items-center" style={{ color: isDarkMode ? "white" : "black"}} ><Category style={{ height: '18px' }} className="a-logo" />About us</a>
             </li>
             <li>
-              <a className="gap-1 flex justify-center items-center"><Bolt style={{ height: '18px' }} className="a-logo" />Teams</a>
+              <a href="https://www.tecosys.in/teams" target="_blank"  className="gap-1 flex justify-center nav-text items-center" style={{ color: isDarkMode ? "white" : "black"}} ><Bolt style={{ height: '18px' }} className="a-logo" />Teams</a>
             </li>
             <li>
-              <a href="#security-section" className="gap-1 flex justify-center items-center"><ConnectWithoutContact style={{ height: '18px' }} className="a-logo" />Security</a>
+              <a href="#security-section" className="gap-1 flex justify-center items-center nav-text" style={{ color: isDarkMode ? "white" : "black"}}  ><ConnectWithoutContact style={{ height: '18px'}} className="a-logo" />Security</a>
             </li>
         </ul>
         <button className="nightlight" onClick={handleNightlightToggle}>
