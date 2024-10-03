@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./HomeNavbar.css";
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { Bolt, Category, ConnectWithoutContact, Home, Menu, Close } from "@mui/icons-material";
+import { Bolt, Category, ConnectWithoutContact, Home, Menu, Close, Settings, Logout, Login } from "@mui/icons-material";
+import { toast } from "react-toastify";
 
 const HomeNavbar = ({ onToggleDarkMode }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate=useNavigate();
 
   const token = localStorage.getItem('token');
 
@@ -23,6 +25,15 @@ const HomeNavbar = ({ onToggleDarkMode }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleLogout = () => {
+    // Clear the token from local storage or session storage
+    localStorage.removeItem('token');
+
+    // Redirect to login page
+    navigate('/auth-user');
+    toast.success("Logout Successfully!")
+  };
 
   const handleNightlightToggle = () => {
     setIsDarkMode((prevMode) => !prevMode);
@@ -47,9 +58,6 @@ const HomeNavbar = ({ onToggleDarkMode }) => {
       </div>
 
       <div className="flex justify-center items-center">
-      <button className="md:hidden bg-indigo-600 text-white p-1 rounded  ml-[60px] h-[30px] flex justify-center items-center">
-          {token ? (<Link to="/casesearch">Dashboard</Link>) : (<Link to="/auth-user">Log In</Link>)}
-      </button>
 
       {/* Mobile Menu Toggle Button */}
       <div className="md:hidden">
@@ -75,8 +83,22 @@ const HomeNavbar = ({ onToggleDarkMode }) => {
             <li>
               <a href="#security-section" className="gap-1 flex font-medium items-center"><ConnectWithoutContact style={{ height: '18px' }} className="a-logo" />Security</a>
             </li>
+            <div className="h-[1px] w-[120px] bg-white ml-[10px]"></div>
+            {token?(<>
             <li>
-              <button className="login1 ml-[12px]" style={{ padding: "5px" }} onClick={handleCalendlyRedirect}>
+              <a href="#security-section" className="gap-1 flex font-medium items-center"><Settings style={{ height: '18px' }} className="a-logo" />Account Settings</a>
+            </li>
+            <li>
+              <button onClick={handleLogout} className="gap-1 flex font-medium items-center"><Logout style={{ height: '18px' }} className="a-logo" />Logout</button>
+            </li>
+            </>):(
+              <li>
+              <a href="/auth-user" className="gap-1 flex font-medium items-center"><Login style={{ height: '18px' }} className="a-logo" />Login</a>
+            </li>
+            )}
+            <div className="h-[1px] w-[120px] bg-white ml-[10px]"></div>
+            <li>
+              <button className="login1 ml-[10px]" style={{ padding: "5px" }} onClick={handleCalendlyRedirect}>
                 Book a Demo
               </button>
             </li>
@@ -111,7 +133,7 @@ const HomeNavbar = ({ onToggleDarkMode }) => {
           </Link>
         </button>
         <button className="login">
-          {token ? (<Link to="/casesearch">Dashboard</Link>) : (<Link to="/auth-user">Log In</Link>)}
+          {token ? (<button onClick={handleLogout}>Logout</button>) : (<Link to="/auth-user">Log In</Link>)}
         </button>
       </div>
     </div>

@@ -1,141 +1,175 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useContext, useRef } from "react";
 import "../Main/Main.css";
 import { assets } from "../assets/assets.js";
 import { Context } from "../../../LawChatBot/context/Context.jsx";
 import Popup from "../Popup/Popup.jsx";
-import LCLogoBlack from "../assets/LCLogoBlack.png";
 import FormattedContent from "../../../CommonFiles/FormattedContent.jsx";
 import ProfileIconDropDown from "../../../CommonFiles/ProfileIconDropdown.jsx";
 import SendIcon from "@mui/icons-material/Send";
 import IconButton from "@mui/material/IconButton";
-import tecosysLogo from "../../CompLawChatBot/assets/tecosysLogo.png"
+import tecosysLogo from "../../CompLawChatBot/assets/tecosysLogo.png";
+import { Edit } from "@mui/icons-material";
 
 const Main = () => {
   const { chatHistory, setChatHistory } = useContext(Context);
-
-  const [showPremiumPopup, setShowPremiumPopup] = useState(false);
-  const [showPIDropdown, setShowPIDropdown] = useState(false);
   const [input, setInput] = useState("");
-
-  const navRef = useRef(null);
-
-
+  const [isEditing, setIsEditing] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
+  const [showPremiumPopup, setShowPremiumPopup] = useState(false); // for Popup
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && input.trim()) {
-      handleSendQuestion(input);
+      handleSendQuestion();
     }
   };
 
-  // Updated handleSendQuestion function with API integration
   const handleSendQuestion = async () => {
-    const currentPrompt = input;
+    const currentPrompt = input.trim();
 
-    // Add user's question to the chat history
-    setChatHistory([
-      ...chatHistory,
-      { question: currentPrompt, isBot: false },
-    ]);
-    setInput("");
+    if (currentPrompt === "") return; // Prevent sending empty messages
 
-    try {
-      // Send POST request to the API
-      const response = await fetch(
-        "https://law-api.tecosys.ai/legal-solutions/lawchatbot/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ query: currentPrompt }), // Send the user's query as 'query'
+    if (isEditing && editIndex !== null) {
+      const updatedChatHistory = [...chatHistory];
+
+      // Update the question at the edited index
+      updatedChatHistory[editIndex] = { question: currentPrompt, isBot: false };
+
+      // Remove the old bot response (which comes right after the question)
+      updatedChatHistory.splice(editIndex + 1, 1);
+
+      setChatHistory(updatedChatHistory);
+      setInput("");
+      setIsEditing(false);
+      setEditIndex(null);
+
+      try {
+        const response = await fetch(
+          "https://law-api.tecosys.ai/legal-solutions/lawchatbot/",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ query: currentPrompt }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
+
+        const resultData = await response.json();
+
+        // Only add the new bot response if it is not the same as the old one
+        setChatHistory((prevChatHistory) => {
+          const updatedHistory = [...prevChatHistory];
+          updatedHistory.splice(editIndex + 1, 0, {
+            answer: resultData.answer || "No answer available.",
+            isBot: true,
+          });
+          return updatedHistory;
+        });
+      } catch (error) {
+        console.error("Error fetching bot response:", error);
+
+        // Handle error case by updating the bot response with an error message
+        setChatHistory((prevChatHistory) => {
+          const updatedHistory = [...prevChatHistory];
+          updatedHistory.splice(editIndex + 1, 0, {
+            answer: "Sorry, something went wrong. Please try again later.",
+            isBot: true,
+          });
+          return updatedHistory;
+        });
+      }
+    } else {
+      // Normal message send flow
+      const existingUserMessage = chatHistory.find(
+        (msg) => msg.question === currentPrompt && msg.isBot === false
       );
 
-      // If response is not OK, throw an error
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      if (!existingUserMessage) {
+        setChatHistory((prevChatHistory) => [
+          ...prevChatHistory,
+          { question: currentPrompt, isBot: false },
+        ]);
+        setInput("");
+
+        try {
+          const response = await fetch(
+            "https://law-api.tecosys.ai/legal-solutions/lawchatbot/",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ query: currentPrompt }),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const resultData = await response.json();
+
+          // Add the bot response if it's not a duplicate
+          setChatHistory((prevChatHistory) => [
+            ...prevChatHistory,
+            { answer: resultData.answer || "No answer available.", isBot: true },
+          ]);
+        } catch (error) {
+          console.error("Error fetching bot response:", error);
+          setChatHistory((prevChatHistory) => [
+            ...prevChatHistory,
+            { answer: "Sorry, something went wrong. Please try again later.", isBot: true },
+          ]);
+        }
       }
-
-      // Parse the JSON response
-      const resultData = await response.json();
-
-      // Add both user's question and bot's response to the chat history
-      setChatHistory([
-        ...chatHistory,
-        { question: currentPrompt, isBot: false },
-        { answer: resultData.answer || "No answer available.", isBot: true },
-      ]);
-    } catch (error) {
-      console.error("Error fetching bot response:", error);
-
-      // Add error message to chat history if API fails
-      setChatHistory([
-        ...chatHistory,
-        { question: currentPrompt, isBot: false },
-        { answer: "Sorry, something went wrong. Please try again later.", isBot: true },
-      ]);
     }
   };
 
-  // Handle clicks outside the dropdown
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        navRef.current &&
-        !navRef.current.contains(event.target) &&
-        !event.target.matches(".nav-img")
-      ) {
-        if (showPIDropdown) {
-          setShowPIDropdown(false);
-        }
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showPIDropdown]);
-
-  const toggleDropdown = () => {
-    setShowPIDropdown(!showPIDropdown);
+  // Enable edit mode for a specific message
+  const handleEdit = (index) => {
+    setInput(chatHistory[index].question);
+    setIsEditing(true);
+    setEditIndex(index);
   };
 
   return (
     <div className="main">
-      <div className="w-full flex flex-col justify-center items-center text-center">
-      <p className="text-indigo-600 text-[32px] tracking-wide font-medium">LawChatBot</p>
-      <p className="text-[16px] font-medium">Legal Issues? Ask Me!</p>
-      </div>
-      {/* <div className="nav">
+      <div className="relative opacity-10">
         <img
-          src={assets.user_icon}
-          alt="profile-img"
-          onClick={toggleDropdown}
-          className="nav-img"
+          src={tecosysLogo}
+          alt="Tecosys-Logo"
+          className="absolute top-[250px] left-[550px] h-[100px] w-[100px]"
         />
-      </div> */}
-      <div className="relative opacity-10 rounded-full w-[100px] h-[100px]">
-        <img src={tecosysLogo} alt="Tecosys-Logo" className="absolute top-[210px] left-[550px]" />
-      </div>
-      <div ref={navRef}>
-        <ProfileIconDropDown showProfileIconDropdown={showPIDropdown} />
       </div>
       <div className="main-container lg:ml-[180px] ml-[10px]">
         <>
           {chatHistory.map((history, index) => (
             <div key={`${history.question}-${index}`} className="result">
               {history.isBot === false && (
-                <div className="result-title">
-                  <img className="imgClassUser" src={assets.user_icon} alt="" />
+                <div className="result-title relative group mb-2">
+                  <img
+                    className="imgClassUser"
+                    src={assets.user_icon}
+                    alt="user"
+                  />
                   <p className="promptClass">{history.question}</p>
+                  {/* Add an edit button for the user's message */}
+                  <button
+                    className=" right-0 flex top-1/2 transform   rounded  text-sm text-black opacity-0 group-hover:opacity-100 transition-opacity"
+                    onClick={() => handleEdit(index)}
+                  >
+                    <Edit fontSize="30px" className=" text-indigo-600 mt-1"/><p className="text-sm font-medium text-gray-400">edit</p>
+                  </button>
                 </div>
               )}
               {history.isBot === true && (
                 <div className="result-response-part">
                   <div className="botImgContainer">
-                    <img className="imgClassBot" src={LCLogoBlack} alt="" />
+                    <img className="imgClassBot" src={tecosysLogo} alt="" />
                   </div>
                   <div className="formatted-content-wrapper">
                     <FormattedContent text={history.answer} />
@@ -169,7 +203,10 @@ const Main = () => {
           </div>
         </div>
       </div>
-      <Popup show={showPremiumPopup} onClose={() => setShowPremiumPopup(false)} />
+      <Popup
+        show={showPremiumPopup}
+        onClose={() => setShowPremiumPopup(false)}
+      />
     </div>
   );
 };
