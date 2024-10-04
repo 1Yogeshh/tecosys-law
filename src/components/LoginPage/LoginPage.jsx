@@ -101,6 +101,7 @@ const LoginPage = () => {
       {
         setOpenOTPSection(true);
         setStartCountdown(true);
+        toast.success("otp send your gmail")
       }
     } catch (error) {
       toast.error("signup failed")

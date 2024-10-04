@@ -59,17 +59,7 @@ function SideNavbar() {
             <Explore className='mr-2' /> <p className='lg:flex hidden'>Case Summariser</p>
           </NavLink>
         </div>
-        <div className='h-[1px] lg:w-[160px] w-auto mt-4 mr-2 bg-gray-200'></div>
 
-        {/* My Profile Section */}
-        <div className='mt-[25px] flex justify-center lg:justify-start'>
-          <NavLink
-            to='/profile'
-            className={({ isActive }) => (isActive ? activeLinkClass : defaultLinkClass)}
-          >
-            <Man className='mr-2' /> <p className='lg:flex hidden'>My Profile</p>
-          </NavLink>
-        </div>
       </div>
     </div>
 

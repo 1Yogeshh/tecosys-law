@@ -138,6 +138,11 @@ const CaseSummariser = () => {
   return (
     <div className="case-background w-full">
 
+      <div className="absolute flex right-4 top-2 gap-2">
+        <div className="h-[30px] w-[30px] border-[1px] border-gray-500 rounded-full"></div>
+        <p className="font-medium">My Profile</p>
+      </div>
+
       <div className="w-1/5">
         <SideNavbar/>
       </div>
