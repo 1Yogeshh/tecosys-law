@@ -28,7 +28,7 @@ function SideNavbar() {
           isDrawerOpen ? 'translate-x-0' : '-translate-x-full '}`}>
         
         <div className='mt-[20px]'>
-          <p className='lg:text-xl lg:font-bold text-lg font-medium flex flex-wrap '>Tecosys<span className='ml-1'>Law</span></p>
+          <a href='/' className='lg:text-xl lg:font-bold text-lg font-medium flex flex-wrap '>Tecosys<span className='ml-1 text-indigo-600'>Law</span></a>
         </div>
 
         <div className='mt-[35px] flex justify-center lg:justify-start'>
