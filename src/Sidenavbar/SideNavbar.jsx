@@ -19,12 +19,12 @@ function SideNavbar() {
     <div className="relative">
       <button
         onClick={toggleDrawer}   
-        className={`p-3 bg-indigo-600  text-white rounded-md fixed z-50 transition-transform duration-300 ${
+        className={`p-3 bg-indigo-600 hidden lg:flex  text-white rounded-md fixed z-50 transition-transform duration-300 ${
           isDrawerOpen ? 'left-[255px]' : 'left-2'} opacity-50 hover:opacity-100`}>
         <LegendToggleIcon />
       </button>
 
-      <div className={`bg-white h-screen shadow-md flex flex-col lg:pl-[70px] pl-2 transition-transform duration-300 fixed top-0 left-0 z-40 w-[250px] ${
+      <div className={`bg-white h-screen shadow-md flex flex-col lg:pl-[70px] pl-2 transition-transform duration-300 fixed top-0 left-0 z-40 lg:w-[250px] w-[80px] ${
           isDrawerOpen ? 'translate-x-0' : '-translate-x-full '}`}>
         
         <div className='mt-[20px]'>
