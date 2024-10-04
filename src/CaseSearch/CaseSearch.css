@@ -3,10 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 .case-search-main-container {
   display: flex;
-  /* background-image: url("../components/CommonHomePage/assets/casesearch-white.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; */
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -14,12 +10,6 @@
   overflow-y: hidden;
   overflow-x: hidden;
   background-color: #f4f4f5;
-  /* background: radial-gradient(
-    circle,
-    rgb(250, 239, 239) 0%,
-    rgb(240, 241, 242) 100%
-  ); */
-  /* background-color: rgba(0, 0, 0, 0.9); */
 }
 
 
@@ -68,7 +58,6 @@
   box-sizing: border-box;
 }
 
-/* style={{ position: 'absolute', right: "26%", top: '50%', transform: 'translateY(-50%)', padding: '0', cursor: 'pointer', zIndex: '4' }} */
 .spcl-input{
   position: absolute;
   right: 5%;
@@ -105,63 +94,6 @@
   font-weight: 500;
   color: var(--secondary-color);
 }
-
-/*
-.scroll-wrapper {
-  position: relative;
-  width: 75vw;
-  overflow: hidden;
-}
-
-.case-search-small-card {
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  padding: 5px 0;
-  gap: 40px;
-  scrollbar-width: none;
-}
-
-.case-search-small-card::-webkit-scrollbar {
-  display: none;
-}
-
-.scroll-wrapper::before,
-.scroll-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 30px;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.scroll-wrapper::before {
-  left: 0;
-  box-shadow: 20px 0 15px -15px rgba(0, 0, 0, 0.5);
-}
-
-.scroll-wrapper::after {
-  right: 0;
-  box-shadow: -20px 0 15px -15px rgba(0, 0, 0, 0.5);
-}
-
-.smallCard {
-  min-width: 30vw;
-  min-height: 15vh;
-  margin-right: 10px;
-  background-color: #f1f1f1;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-*/
 
 .case-search-small-card {
   width: 75vw;

@@ -1,11 +1,10 @@
 .sidebar {
   min-height: 100vh;
-  max-height: 100vh; /* Make sure sidebar has a maximum height */
-  /* overflow-y: auto;  */
+  max-height: 100vh; 
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #f0f4f9;        /*#7e7d7d*/
+  background-color: #f0f4f9;        
   padding: 25px 15px;
 }
 .sidebar .recent {
@@ -44,7 +43,6 @@
 }
 
 .sidebar-button {
-  /* margin-top: 50px; */
   display: inline-flex;
   align-items: center;
   gap: 10px;

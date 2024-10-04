@@ -8,7 +8,6 @@ const HomeFooter = ({ isDarkMode }) => {
       <div className="footer_top ">
         <div className="left_footer">
           <div className="lo">
-            {/* <img src={image2} alt="" /> */}
             <p>Tecosys</p>
           </div>
           <div className="form">

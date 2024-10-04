@@ -27,7 +27,7 @@ const CaseSummariser = () => {
   const navRef = useRef(null);
   const navigate=useNavigate()
 
-  const token = localStorage.getItem('token'); // Retrieve token from localStorage
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     // Check if token exists
@@ -144,14 +144,7 @@ const CaseSummariser = () => {
 
 
       <div className="w-4/5">
-      {/*<div className="cs-nav">
-        <img
-          src={assets.user_icon}
-          alt="profile-img"
-          onClick={toggleDropdown}
-          className="cs-nav-img"
-        />
-      </div>*/}
+      
       <div ref={navRef}>
         <ProfileIconDropDown showProfileIconDropdown={showPIDropdown} /> 
       </div>

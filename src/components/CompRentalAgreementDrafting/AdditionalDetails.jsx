@@ -10,14 +10,9 @@ const useStyles = makeStyles(()=>({
     minHeight: '80vh',
     margin: 'auto',
     padding: 15,
-    // border: '1px solid #ddd',
-    // borderRadius: 8,
-    // boxShadow: '0 2px 4px rgba(0,0,0,0.4)',
     display: 'flex',
     flexDirection: 'column',
-    //justifyContent: 'space-between', // Space between form content and button
     position: 'relative',
-    // backgroundColor: 'red',
     overflowY: 'auto',
     '@media (max-width: 800px)': {
         width: '80vw',

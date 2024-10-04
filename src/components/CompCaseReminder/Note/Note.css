@@ -6,11 +6,9 @@
   width: 240px;
   margin: 16px;
   float: left;
-  /* margin-bottom: 30px; */
 }
 .note h1 {
   font-size: 1.1rem;
-  /* margin-bottom: 6px; */
 }
 .note p {
   font-size: 1.1rem;

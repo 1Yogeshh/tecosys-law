@@ -142,7 +142,7 @@ const DraftPageBody = () => {
 
     const classes = useStyles();
   return (
-    // style={{width: '100%', alignItems: 'center', justifyContent: 'center', marginBottom: "30px"}}
+    
     <div style={{width: '100%', alignItems: 'center', justifyContent: 'center'}}>
         <div className={classes.blueBgmFullWdth}>
             <div className={classes.timeline}>

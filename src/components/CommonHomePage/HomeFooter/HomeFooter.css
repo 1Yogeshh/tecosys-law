@@ -119,12 +119,6 @@
   display: flex;
   gap: 20px;
 }
-/* .form1 input:first-of-type {
-  margin-top: -15px;
-}
-.form1:last-of-type {
-  margin-top: -10px;
-} */
 .form1 input {
   height: 40px;
   width: 282px;

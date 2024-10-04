@@ -8,8 +8,8 @@
   align-items: center;
   justify-items: center;
   width: 100%;
-  margin: 0; /* Ensure no margin is causing the gap */
-  padding: 50px 20px; /* Maintain padding if needed */
+  margin: 0;
+  padding: 50px 20px; 
   box-sizing: border-box;
 }
 

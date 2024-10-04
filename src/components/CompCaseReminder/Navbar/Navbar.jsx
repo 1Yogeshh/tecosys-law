@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import image from "../../assets/logo.svg";
-// import cart1 from "../../assets/shopping-cart.png";
-// import Cart from "../../Pages/Cart/Cart";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -17,14 +14,12 @@ const Navbar = () => {
     <div className="navbar">
       <div className="nav_items">
         <div className="logo">
-          {/* <img src={image} alt="" /> */}
           <Link to={"/"}>
             <h1>E-Drafting</h1>
           </Link>
         </div>
         <div  onClick={() => setClicked((prev) => !prev)}>
           <i className={clicked ? "fas fa-times" : "fas fa-bars"}></i>
-          {/* <i className="fas fa-times"></i> */}
         </div>
         <div className={`nav_main ${clicked ? "ulactive" : ""}`}>
           <ul className={clicked ? "ulactive" : ""}>

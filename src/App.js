@@ -1,6 +1,5 @@
 import {React,useState} from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import CommonHomePage from "./CommonHomePage.js";
 import DraftDataInput from "./RentalAgreementDrafting/DraftDataInput.jsx";
 import MakePayment from "./RentalAgreementDrafting/MakePayment.jsx";
 import LawChatBotPage from "./LawChatBot/LawChatBotPage.jsx";

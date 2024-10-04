@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-// import Navbar from "./Components/Navbar/Navbar";
-// import Hero from "./Components/Hero/Hero";
-// import Footer from "./Components/Footer/Footer";
-// import Note from "./Components/Note/Note";
 import Navbar from "../components/CompCaseReminder/Navbar/Navbar";
 import Hero from "../components/CompCaseReminder/Hero/Hero";
 import Footer from "../components/CompCaseReminder/Footer/Footer";

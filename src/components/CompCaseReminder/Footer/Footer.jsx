@@ -1,6 +1,5 @@
 import React from "react";
 import "./Footer.css";
-// import image2 from "../../assets/logo.svg";
 
 const Footer = () => {
   return (
@@ -8,7 +7,6 @@ const Footer = () => {
       <div className="footer_top">
         <div className="left_footer">
           <div className="lo">
-            {/* <img src={image2} alt="" /> */}
             <p>LawCrats</p>
           </div>
           <div className="form">
@@ -46,7 +44,6 @@ const Footer = () => {
           <div>
             <h4>Navigation</h4>
             <a href="/">Home</a>
-            {/* <a href="/">Shop</a> */}
             <a href="/">Collections</a>
             <a href="/"> About Us</a>
             <a href="/"> Contact Us</a>

@@ -219,11 +219,6 @@ const AgreementDetails = ({ nextStep, prevStep, onThisStepDataStream, initialDat
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    // setIsSaved(true);
-    // if (onSubmit){
-    //   onSubmit(true);
-    //   nextStep(details);
-    // } 
     nextStep(details);
   };
 

@@ -3,17 +3,6 @@ import {
   HarmCategory,
   HarmBlockThreshold,
 } from "@google/generative-ai";
-// const apikey = "AIzaSyDhhTsygyIY_o9JK_dfemu7QlgulfQmRc4";
-/*
- * Install the Generative AI SDK
- *
- * $ npm install @google/generative-ai
- *
- * See the getting started guide for more information
- * https://ai.google.dev/gemini-api/docs/get-started/node
- */
-
-// const API_KEY = "AIzaSyDhhTsygyIY_o9JK_dfemu7QlgulfQmRc4";
 const apiKey = "AIzaSyDhhTsygyIY_o9JK_dfemu7QlgulfQmRc4";
 const genAI = new GoogleGenerativeAI(apiKey);
 

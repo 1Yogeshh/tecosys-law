@@ -35,7 +35,6 @@ const Main = () => {
     }
   };
 
-  // Send the question to the API
   const handleSendQuestion = async (query) => {
     const currentPrompt = query || input; // Use the query or the input value
 
@@ -44,7 +43,7 @@ const Main = () => {
     if (isEditing && editIndex !== null) {
       const updatedChatHistory = [...chatHistory];
       updatedChatHistory[editIndex] = { question: currentPrompt, isBot: false };
-      updatedChatHistory.splice(editIndex + 1, 1); // Remove the old bot response
+      updatedChatHistory.splice(editIndex + 1, 1); 
       setChatHistory(updatedChatHistory);
       setInput(""); // Clear input field
       setIsEditing(false); // Exit edit mode
