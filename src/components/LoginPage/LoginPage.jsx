@@ -117,6 +117,7 @@ const LoginPage = () => {
       
       if (response.status === 200) {
         toast.success("OTP verified successfully!");
+        navigate('/auth-user')
         
       } else {
         toast.error("OTP verification failed!");
