@@ -8,7 +8,8 @@ import ProfileIconDropDown from "../../../CommonFiles/ProfileIconDropdown.jsx";
 import SendIcon from "@mui/icons-material/Send";
 import IconButton from "@mui/material/IconButton";
 import tecosysLogo from "../../CompLawChatBot/assets/tecosysLogo.png";
-import { Edit, Info, QuestionAnswer, AttachMoney } from "@mui/icons-material"; // Import icons
+import { Edit, Info, QuestionAnswer, AttachMoney, ContentCopy } from "@mui/icons-material"; // Import icons
+import { toast } from "react-toastify";
 
 const Main = () => {
   const { chatHistory, setChatHistory } = useContext(Context);
@@ -163,6 +164,16 @@ const Main = () => {
     handleSendQuestion(question);
   };
 
+  const handleCopyResponse = (response) => {
+    navigator.clipboard.writeText(response)
+      .then(() => {
+        toast("Response copied!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+      });
+  };
+
   return (
     <div className="main">
       <div className="relative opacity-10">
@@ -232,8 +243,14 @@ const Main = () => {
                   <div className="botImgContainer">
                     <img className="imgClassBot" src={tecosysLogo} alt="" />
                   </div>
-                  <div className="formatted-content-wrapper">
+                  <div className="formatted-content-wrapper flex gap-2">
                     <FormattedContent text={history.answer} />
+                    <button
+                    className=" top-0 mt-2 flex "
+                    onClick={() => handleCopyResponse(history.answer)}
+                  >
+                    <ContentCopy style={{height:"20px"}} />
+                  </button>
                   </div>
                 </div>
               )}
