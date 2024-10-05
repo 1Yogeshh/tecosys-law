@@ -8,7 +8,7 @@ import ProfileIconDropDown from "../../../CommonFiles/ProfileIconDropdown.jsx";
 import SendIcon from "@mui/icons-material/Send";
 import IconButton from "@mui/material/IconButton";
 import tecosysLogo from "../../CompLawChatBot/assets/tecosysLogo.png";
-import { Edit, Info, QuestionAnswer, AttachMoney, ContentCopy } from "@mui/icons-material"; // Import icons
+import { Edit, Info, QuestionAnswer, AttachMoney, ContentCopy, Close } from "@mui/icons-material"; // Import icons
 import { toast } from "react-toastify";
 
 const Main = () => {
@@ -36,6 +36,15 @@ const Main = () => {
       icon: <Info />,
     },
   ]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     if (chatHistory.length === 0) {
@@ -185,7 +194,7 @@ const Main = () => {
       </div>
       <div className="absolute flex right-4 top-2 gap-2">
         <div className="h-[30px] w-[30px] border-[1px] border-gray-500 rounded-full"></div>
-        <p className="font-medium">My Profile</p>
+        <p className="font-medium hover:cursor-pointer" onClick={handleOpenModal}>My Profile</p>
       </div>
       <div className="main-container lg:ml-[180px] ml-[10px]">
         <>
@@ -283,6 +292,33 @@ const Main = () => {
         show={showPremiumPopup}
         onClose={() => setShowPremiumPopup(false)}
       />
+      {/* Modal for Profile */}
+      {isModalOpen && (
+        <div className="fixed inset-0 top-0 overflow-hidden h-[1500px] bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
+          <div className="bg-white fixed rounded-lg p-6 max-w-lg top-44 w-full">
+            <button className="absolute top-2 right-2 text-gray-500" onClick={handleCloseModal}>
+              <Close/>
+            </button>
+            <h2 className="text-2xl font-semibold mb-4">User Profile</h2>
+            <div className="flex gap-4 items-center justify-center">
+              <div className="w-[150px] h-[150px] border-[1px] border-black rounded-full"></div>
+              <div className="flex flex-col gap-2">
+                <div className="flex font-medium">
+                  <p>Name-</p>
+                  <p>User name</p>
+                </div>
+                <div className="flex font-medium">
+                  <p>Username-</p>
+                  <p>User username</p>
+                </div>
+                <div>
+                  <button className="flex justify-center items-center rounded font-medium bg-indigo-600 text-white w-[200px] h-[30px] mt-2">Edit Profile</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
