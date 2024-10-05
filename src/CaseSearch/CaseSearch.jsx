@@ -163,6 +163,20 @@ const CaseSearch = () => {
     setSearchQueryResultArray(results);
   };
 
+   // Trigger search when "Enter" is pressed
+   useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Enter") {
+        handleGetQueryResultArray();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleGetQueryResultArray])
+
   return (
     <div className="case-search-main-container w-full">
       <div className="absolute flex right-4 top-2 gap-2">

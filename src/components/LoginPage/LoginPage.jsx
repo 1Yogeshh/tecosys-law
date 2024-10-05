@@ -101,7 +101,7 @@ const LoginPage = () => {
       {
         setOpenOTPSection(true);
         setStartCountdown(true);
-        toast.success("otp send your gmail")
+        toast.success("otp sent your gmail")
       }
     } catch (error) {
       toast.error("signup failed")
@@ -118,7 +118,7 @@ const LoginPage = () => {
       
       if (response.status === 200) {
         toast.success("OTP verified successfully!");
-        navigate('/auth-user')
+        navigate('/')
         
       } else {
         toast.error("OTP verification failed!");
