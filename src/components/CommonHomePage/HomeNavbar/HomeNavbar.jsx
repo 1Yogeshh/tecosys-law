@@ -264,8 +264,8 @@ const HomeNavbar = ({ onToggleDarkMode }) => {
           </div>
         </div>
       )}
-        <button className="login">
-          {token ? (<button onClick={handleLogout}>Logout</button>) : (<Link to="/auth-user">Log In</Link>)}
+        <button>
+          {token ? (<button className="login" onClick={handleLogout}>Logout</button>) : (<Link className="login" to="/auth-user">Log In</Link>)}
         </button>
       </div>
     </div>
