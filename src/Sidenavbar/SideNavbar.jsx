@@ -1,7 +1,8 @@
 import { Explore, Man, Message, Search } from '@mui/icons-material';
 import { React, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import LegendToggleIcon from '@mui/icons-material/LegendToggle';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+
 
 function SideNavbar() {
   const activeLinkClass = 'text-indigo-600 font-medium flex gap-1 ';
@@ -19,9 +20,9 @@ function SideNavbar() {
     <div className="relative">
       <button
         onClick={toggleDrawer}   
-        className={`p-3 bg-indigo-600 hidden lg:flex  text-white rounded-md fixed z-50 transition-transform duration-300 ${
-          isDrawerOpen ? 'left-[255px]' : 'left-2'} opacity-50 hover:opacity-100`}>
-        <LegendToggleIcon />
+        className={`p-1 bg-indigo-600 hidden lg:flex  text-white rounded-md fixed z-50 transition-transform duration-400 ${
+          isDrawerOpen ? 'left-[255px]' : 'left-2'} opacity-70 hover:opacity-100`}>
+            <ChevronRightIcon/>
       </button>
 
       <div className={`bg-white h-screen shadow-md flex flex-col lg:pl-[70px] pl-2 transition-transform duration-300 fixed top-0 left-0 z-40 lg:w-[250px] w-[80px] ${
