@@ -221,7 +221,7 @@ const LoginPage = () => {
             <>
               {/* Home Button (Visible on both Sign Up and Log In forms) */}
               <button
-                className="bg-indigo-600 text-white py-2 px-4 rounded-md mt-2 mb-4 fixed top-0 right-0 transition duration-200"
+                className="bg-indigo-600 text-white py-2 px-4 rounded-md mt-2 mb-4 fixed top-0 right-0 transition-all duration-300"
                 onClick={handleHomeClick}
                 type="button"
               >
@@ -290,7 +290,7 @@ const LoginPage = () => {
 
         <form className="dataSubmitForm" onSubmit={handleSigninDataSubmit}>
           <button
-            className="bg-indigo-600 text-white py-2 px-4 rounded-md mt-2 mb-4 fixed top-0 left-0 transition duration-200"
+            className="bg-indigo-600 text-white py-2 px-4 rounded-md mt-2 mb-4 fixed top-0 left-0 transition-all duration-300"
             onClick={handleHomeClick}
             type="button"
           >

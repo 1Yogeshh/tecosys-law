@@ -27,7 +27,7 @@ const Navbar = () => {
               className={activeItem === 0 ? "active" : ""}
               onClick={() => handleItemClick(0)}
             >
-              <Link to="/">Log In</Link>
+              <Link to="/" className="transition-all duration-500">Log In</Link>
             </li>
             <li
               className={activeItem === 1 ? "active" : ""}
