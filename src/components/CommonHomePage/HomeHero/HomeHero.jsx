@@ -35,7 +35,7 @@ const HomeHero = ({ isDarkMode }) => {
     <div className={`homehero ${isDarkMode ? "dark" : ""}`}>
       <div className="homehero_content">
         <div className="introduction">
-          <div className="introduction1 flex items-center space-x-3">
+          <div className="introduction1 pl-1 pr-1 w-auto flex items-center space-x-3">
             <span>
               <AutoAwesome style={{ height: "20px", color: "#FDE047" }} />
             </span>
