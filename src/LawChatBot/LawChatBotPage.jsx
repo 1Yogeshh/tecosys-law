@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const App = () => {
   const navigate=useNavigate()
-  const token = localStorage.getItem('token'); // Retrieve token from localStorage
+  const token = localStorage.getItem('accessToken'); // Retrieve token from localStorage
 
   useEffect(() => {
     // Check if token exists

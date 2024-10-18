@@ -10,6 +10,7 @@
   import tecosysLogo from "../../CompLawChatBot/assets/tecosysLogo.png";
   import { Edit, Info, QuestionAnswer, AttachMoney, ContentCopy, ArrowForward, Close, Delete, LegendToggle, ArrowBack, ArrowRight, ArrowLeft } from "@mui/icons-material"; // Import icons
   import { toast } from "react-toastify";
+  import axios from "axios";
 
   const Main = () => {
     const { chatHistory, setChatHistory } = useContext(Context);
@@ -19,6 +20,15 @@
     const [showPremiumPopup, setShowPremiumPopup] = useState(false);
     const [hideDefaultQuestions, setHideDefaultQuestions] = useState(false); // New state variable
     const [persistentHistory, setPersistentHistory] = useState([]);
+
+
+    const [name, setName] = useState('');
+    const [email, setEmail]=useState('')
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+    const [editing, setEditing] = useState(false)
+
+    const token = localStorage.getItem("accessToken");
 
     // Pagination states
      const [currentPage, setCurrentPage] = useState(0);
@@ -137,6 +147,8 @@
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
+        
+
         const resultData = await response.json();
 
         // Update chat history and persistent history
@@ -152,6 +164,7 @@
         setChatHistory((prevChatHistory) => [
           ...prevChatHistory,
           { answer: "Sorry, something went wrong. Please try again later.", isBot: true },
+          
         ]);
       }
     };
@@ -200,6 +213,54 @@
     }
   };
 
+  useEffect(() => {
+    // Fetch user profile data (if needed)
+    fetchProfile();
+  }, []);
+
+  const fetchProfile = async () => {
+    try {
+      const response = await axios.get('https://law-api.tecosys.ai/api/user/', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      
+      setName(response.data.name);
+      setEmail(response.data.email)
+       // Set the fetched name to the state
+    } catch (error) {
+      console.error('Error fetching profile:', error);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+    try {
+      const response = await axios.put(
+        'https://law-api.tecosys.ai/api/user/',
+        { name, email, },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      setEditing(false)
+      setSuccess('Profile updated successfully!');
+      toast.success('Profile updated successfully!')
+    } catch (error) {
+      setError('Error updating profile. Please try again.');
+
+      setEditing(false)
+      toast.success('Profile updated successfully!')
+      
+    }
+  };
+
     return (
       <div className="main">
         <div className="relative opacity-10">
@@ -211,7 +272,7 @@
         </div>
         <div className="absolute flex right-4 top-2 gap-2">
           <div className="h-[30px] w-[30px] border-[1px] border-gray-500 rounded-full"></div>
-          <p className="font-medium hover:cursor-pointer" onClick={handleOpenModal}>My Profile</p>
+          <p className="font-medium hover:cursor-pointer" onClick={handleOpenModal}>{name}</p>
         </div>
 
         <button
@@ -363,31 +424,65 @@
         />
         {/* Modal for Profile */}
         {isModalOpen && (
-          <div className="fixed inset-0 top-0 overflow-hidden h-[1500px] bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
-            <div className="bg-white fixed rounded-lg p-6 max-w-lg top-44 w-full">
-              <button className="absolute top-2 right-2 text-gray-500" onClick={handleCloseModal}>
-                <Close/>
-              </button>
-              <h2 className="text-2xl font-semibold mb-4">User Profile</h2>
-              <div className="flex gap-4 items-center justify-center">
-                <div className="w-[150px] h-[150px] border-[1px] border-black rounded-full"></div>
+        <div className="fixed inset-0 top-0 overflow-hidden h-[1500px] bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
+          <div className="bg-white fixed rounded-lg p-6 max-w-lg top-44 w-full">
+            <button className="absolute top-2 right-2 text-gray-500" onClick={handleCloseModal}>
+              <Close/>
+            </button>
+            <h2 className="text-2xl font-semibold mb-4">User Profile</h2>
+            <div className="flex gap-4 items-center justify-center">
+              <div className="w-[150px] h-[150px] border-[1px] border-black rounded-full"></div>
+
+              {!editing ? (
                 <div className="flex flex-col gap-2">
-                  <div className="flex font-medium">
-                    <p>Name-</p>
-                    <p>User name</p>
-                  </div>
-                  <div className="flex font-medium">
-                    <p>Username-</p>
-                    <p>User username</p>
-                  </div>
-                  <div>
-                    <button className="flex justify-center items-center rounded font-medium bg-indigo-600 text-white w-[200px] h-[30px] mt-2">Edit Profile</button>
-                  </div>
+                <div className="flex font-medium">
+                  <p>Name-</p>
+                  <p>
+                    {name}
+                  </p>
+                </div>
+                <div className="flex font-medium">
+                  <p>Email-</p>
+                  <p>
+                    {email}
+                  </p>
+                </div>
+                <div>
+                  <button onClick={()=>setEditing(true)} className="flex justify-center items-center rounded font-medium bg-indigo-600 text-white w-[200px] h-[30px] mt-2">Edit Profile</button>
                 </div>
               </div>
+
+              ):(
+                <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+                <div className="flex gap-1 flex-col font-medium">
+                  <p>Name</p>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e)=>setName(e.target.value)}
+                    className=" outline-none bg-zinc-100 pt-1 pb-1 pl-2 pr-2"
+                  />
+                </div>
+                <div className="flex gap-1 flex-col font-medium">
+                  <p>Email</p>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e)=>setEmail(e.target.value)}
+                    className=" outline-none bg-zinc-100 pt-1 pb-1 pl-2 pr-2"
+                  />
+                </div>
+                <div>
+                  <button type="submit" className="flex justify-center items-center rounded font-medium bg-indigo-600 text-white w-[200px] h-[30px] mt-2">Save changes</button>
+                </div>
+              </form>
+              )
+              }
+              
             </div>
           </div>
-        )}
+        </div>
+      )}
       </div>
     );
   };

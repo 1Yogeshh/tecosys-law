@@ -29,7 +29,7 @@ const HomeHero = ({ isDarkMode }) => {
   }, [index, currentText]);
 
   // Getting token from local storage
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("accessToken");
 
   return (
     <div className={`homehero ${isDarkMode ? "dark" : ""}`}>

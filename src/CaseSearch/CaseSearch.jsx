@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Close } from "@mui/icons-material";
+import { toast } from "react-toastify";
 
 const CaseSearch = () => {
 
@@ -40,6 +41,12 @@ const CaseSearch = () => {
   const [searchHistory, setSearchHistory] = useState([]); // State for search history
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [name, setName] = useState('');
+  const [email, setEmail]=useState('')
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [ editing, setEditing] = useState(false)
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -50,7 +57,10 @@ const CaseSearch = () => {
 
   const navRef = useRef(null);
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("accessToken");
+  
+
+  
 
   useEffect(() => {
     if (token) {
@@ -92,9 +102,12 @@ const CaseSearch = () => {
 
         // Save the search result to history
         saveSearchHistory(searchQuery, extractedData);
+        console.log(response);
+        
       }
     } catch (error) {
-      setErrorMessage("Internal Server Error. Please try again.");
+      console.log(error);
+      
     } finally {
       setLoading(false);
     }
@@ -117,6 +130,8 @@ const CaseSearch = () => {
       }
     } catch (error) {
       setErrorMessage("Error fetching case summary.");
+      console.log(error);
+      
     } finally {
       setLoading(false);
     }
@@ -177,11 +192,65 @@ const CaseSearch = () => {
     };
   }, [handleGetQueryResultArray])
 
+  
+  
+  useEffect(() => {
+    // Fetch user profile data (if needed)
+    fetchProfile();
+  }, []);
+
+  const fetchProfile = async () => {
+    try {
+      const response = await axios.get('https://law-api.tecosys.ai/api/user/', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      
+      setName(response.data.name);
+      setEmail(response.data.email)
+       // Set the fetched name to the state
+    } catch (error) {
+      console.error('Error fetching profile:', error);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+    try {
+      const response = await axios.put(
+        'https://law-api.tecosys.ai/api/user/',
+        { name, email, },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      setEditing(false)
+      setSuccess('Profile updated successfully!');
+      toast.success('Profile updated successfully!')
+    } catch (error) {
+      setError('Error updating profile. Please try again.');
+
+      setEditing(false)
+      toast.success('Profile updated successfully!')
+      
+    }
+  };
+
+
+
+  
+
   return (
     <div className="case-search-main-container w-full">
       <div className="absolute flex right-4 top-2 gap-2">
         <div className="h-[30px] w-[30px] border-[1px] border-gray-500 rounded-full"></div>
-        <a className="font-medium hover:cursor-pointer" onClick={handleOpenModal}>My Profile</a>
+        <a className="font-medium hover:cursor-pointer" onClick={handleOpenModal}>{name}</a>
       </div>
       
       <div className="w-1/5">
@@ -234,30 +303,47 @@ const CaseSearch = () => {
           <div
             ref={carouselRef}
             className="case-search-small-card flex gap-8 overflow-x-auto scrollbar-hide scroll-smooth px-4"
-          >
+             >
+            {/* Check if searchQueryResultArray is an array and has items */}
             {Array.isArray(searchQueryResultArray) &&
               searchQueryResultArray.map((item, index) => (
                 <div
                   className="smallCard bg-white shadow-md rounded-lg p-2 flex-shrink-0 w-64"
                   key={index}
                 >
-                  <p className="text-sm font-semibold mb-2 text-indigo-600">{item.case_title}</p>
-                  <p className="text-sm mb-4">Case No.- {item.case_no}</p>
-                  <span
-                    className="onHoverSpan flex items-center gap-2 cursor-pointer "
-                    onClick={() => window.open(item.pdf_link, "_blank")}
-                  >
-                    <AttachmentOutlinedIcon /> Read the Document
-                  </span>
+                  {/* Ensure case title exists and map correctly */}
+                  <p className="text-sm font-semibold mb-2 text-indigo-600">
+                    {item["Case Title"] || "No Case Title Available"}
+                  </p>
+
+                  {/* Ensure case number exists */}
+                  <p className="text-sm mb-4">
+                    Case No.- {item["Case No"] || "N/A"}
+                  </p>
+
+                  {/* Conditional rendering for pdf_link */}
+                  {item["PDF Link"] ? (
+                    <span
+                      className="onHoverSpan flex items-center gap-2 cursor-pointer "
+                      onClick={() => window.open(item["PDF Link"], "_blank")}
+                    >
+                      <AttachmentOutlinedIcon /> Read the Document
+                    </span>
+                  ) : (
+                    <span className="text-sm text-gray-500">No Document Available</span>
+                  )}
+
+                  {/* Call handleGetSearchSummaryByIndex if item.index is valid */}
                   <button
-                    onClick={() => handleGetSearchSummaryByIndex(item.index)}
-                    className="summary-button mt-4 bg-indigo-600 text-white px-4 py-2 rounded-lg"
-                  >
-                    Show Summary
-                  </button>
-                </div>
-              ))}
+               onClick={() => handleGetSearchSummaryByIndex(item.index)}
+               className="summary-button mt-4 bg-indigo-600 text-white px-4 py-2 rounded-lg"
+               >
+                Show Summary
+              </button>
+            </div>
+            ))}
           </div>
+
 
           {/* Forward button */}
           <button
@@ -320,7 +406,7 @@ const CaseSearch = () => {
 
         {/* Search History Section */}
         {!isSearchSummaryCalled && searchHistory.length > 0 && (
-          <div className="search-history bg-white shadow-md rounded-lg p-4">
+          <div className="search-history bg-white shadow-md rounded-lg p-4 mt-6">
             <h3 className="text-center text-xl font-600 font-bold mb-3">History</h3>
             <ul>
               {searchHistory.map((entry, index) => (
@@ -345,19 +431,53 @@ const CaseSearch = () => {
             <h2 className="text-2xl font-semibold mb-4">User Profile</h2>
             <div className="flex gap-4 items-center justify-center">
               <div className="w-[150px] h-[150px] border-[1px] border-black rounded-full"></div>
-              <div className="flex flex-col gap-2">
+
+              {!editing ? (
+                <div className="flex flex-col gap-2">
                 <div className="flex font-medium">
                   <p>Name-</p>
-                  <p>User name</p>
+                  <p>
+                    {name}
+                  </p>
                 </div>
                 <div className="flex font-medium">
-                  <p>Username-</p>
-                  <p>User username</p>
+                  <p>Email-</p>
+                  <p>
+                    {email}
+                  </p>
                 </div>
                 <div>
-                  <button className="flex justify-center items-center rounded font-medium bg-indigo-600 text-white w-[200px] h-[30px] mt-2">Edit Profile</button>
+                  <button onClick={()=>setEditing(true)} className="flex justify-center items-center rounded font-medium bg-indigo-600 text-white w-[200px] h-[30px] mt-2">Edit Profile</button>
                 </div>
               </div>
+
+              ):(
+                <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+                <div className="flex gap-1 flex-col font-medium">
+                  <p>Name</p>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e)=>setName(e.target.value)}
+                    className=" outline-none bg-zinc-100 pt-1 pb-1 pl-2 pr-2"
+                  />
+                </div>
+                <div className="flex gap-1 flex-col font-medium">
+                  <p>Email</p>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e)=>setEmail(e.target.value)}
+                    className=" outline-none bg-zinc-100 pt-1 pb-1 pl-2 pr-2"
+                  />
+                </div>
+                <div>
+                  <button type="submit" className="flex justify-center items-center rounded font-medium bg-indigo-600 text-white w-[200px] h-[30px] mt-2">Save changes</button>
+                </div>
+              </form>
+              )
+              }
+              
             </div>
           </div>
         </div>

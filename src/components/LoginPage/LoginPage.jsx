@@ -106,6 +106,8 @@ const LoginPage = () => {
       }
     } catch (error) {
       toast.error("signup failed")
+      console.log(error);
+      
     }
   };
   // handle otp submit
@@ -150,26 +152,36 @@ const LoginPage = () => {
   // this one for sending signin data to backend, check endpoint
   const handleSigninDataSubmit = async (e) => {
     e.preventDefault();
+    
     try {
-      const response = await axios.post("https://law-api.tecosys.ai/api/login/", { email: signInData.email, password: signInData.password });
+      const response = await axios.post("https://law-api.tecosys.ai/api/login/", { 
+        email: signInData.email, 
+        password: signInData.password 
+      });
+  
       if (response.status === 200) {
-        const { token } = response.data;
-
-
-        // Store token in localStorage
-        localStorage.setItem("token", token);
-
-
+        // Extract the access token and refresh token
+        const { access, refresh } = response.data;
+  
+        // Store tokens in localStorage
+        localStorage.setItem("accessToken", access);
+        localStorage.setItem("refreshToken", refresh);
+        
+  
+        // Show success message
         toast.success("Login successful!");
-
+  
         // Redirect to the homepage or any other protected route
         navigate('/');
       }
-
+  
     } catch (error) {
-      toast.error("Login failed!");
+      // Handle the error and display a failure message
+      toast.error("Login failed! Please check your credentials.");
+      console.error("Error during login:", error);
     }
   };
+  
 
   const handleSignUpClick = () => {
     setIsRightPanelActive(true);
