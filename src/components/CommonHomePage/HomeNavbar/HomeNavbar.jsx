@@ -35,7 +35,7 @@ const HomeNavbar = ({ onToggleDarkMode }) => {
 
   const handleLogout = () => {
     // Clear the token from local storage or session storage
-    localStorage.removeItem('token');
+    localStorage.removeItem('accessToken');
 
     // Redirect to login page
     navigate('/auth-user');

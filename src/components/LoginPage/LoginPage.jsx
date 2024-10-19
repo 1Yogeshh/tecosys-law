@@ -39,7 +39,7 @@ const LoginPage = () => {
     setOtp(newValue)
   }
 
-  const token = localStorage.getItem('token'); // Retrieve token from localStorage
+  const token = localStorage.getItem('accessToken'); // Retrieve token from localStorage
 
   useEffect(() => {
     // Check if token exists
