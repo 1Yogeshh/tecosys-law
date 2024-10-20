@@ -29,6 +29,7 @@
     const [editing, setEditing] = useState(false)
 
     const token = localStorage.getItem("accessToken");
+    
 
     // Pagination states
      const [currentPage, setCurrentPage] = useState(0);
@@ -132,12 +133,14 @@
 
     const sendToBot = async (currentPrompt) => {
       try {
+        const token = localStorage.getItem("accessToken");
         const response = await fetch(
           "https://law-api.tecosys.ai/legal-solutions/lawchatbot/",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+               Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({ query: currentPrompt }),
           }
@@ -239,6 +242,7 @@
     setError('');
     setSuccess('');
     try {
+      const token = localStorage.getItem("accessToken");
       const response = await axios.put(
         'https://law-api.tecosys.ai/api/user/',
         { name, email, },
@@ -251,15 +255,15 @@
       );
       setEditing(false)
       setSuccess('Profile updated successfully!');
-      toast.success('Profile updated successfully!')
+      toast.success(response.data.message)
+      console.log(response);
+      
     } catch (error) {
-      setError('Error updating profile. Please try again.');
-
-      setEditing(false)
-      toast.success('Profile updated successfully!')
+      toast.error(error.response.data.message)
       
     }
   };
+  
 
     return (
       <div className="main">
