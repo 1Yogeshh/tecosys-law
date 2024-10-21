@@ -11,9 +11,6 @@ import SideNavbar from "../Sidenavbar/SideNavbar.jsx";
 import { useNavigate } from "react-router-dom";
 import { Close } from "@mui/icons-material";
 import { toast } from "react-toastify";
-
-
-
 const CaseSummariser = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [fileName, setFileName] = useState("");
@@ -29,7 +26,7 @@ const CaseSummariser = () => {
     const [email, setEmail]=useState('')
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-    const [editing, setEditing] = useState(false)
+    const [editing, setEditing] = useState(false);
 
 
   const handleOpenModal = () => {
