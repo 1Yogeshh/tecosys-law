@@ -11,6 +11,7 @@ import SideNavbar from "../Sidenavbar/SideNavbar.jsx";
 import { useNavigate } from "react-router-dom";
 import { Close } from "@mui/icons-material";
 import { toast } from "react-toastify";
+import Profile from "../components/Profile/Profile.jsx";
 
 
 
@@ -270,56 +271,7 @@ const CaseSummariser = () => {
               <Close/>
             </button>
             <h2 className="text-2xl font-semibold mb-4">User Profile</h2>
-            <div className="flex gap-4 items-center justify-center">
-              <div className="w-[150px] h-[150px] border-[1px] border-black rounded-full"></div>
-
-              {!editing ? (
-                <div className="flex flex-col gap-2">
-                <div className="flex font-medium">
-                  <p>Name-</p>
-                  <p>
-                    {name}
-                  </p>
-                </div>
-                <div className="flex font-medium">
-                  <p>Email-</p>
-                  <p>
-                    {email}
-                  </p>
-                </div>
-                <div>
-                  <button onClick={()=>setEditing(true)} className="flex justify-center items-center rounded font-medium bg-indigo-600 text-white w-[200px] h-[30px] mt-2">Edit Profile</button>
-                </div>
-              </div>
-
-              ):(
-                <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-                <div className="flex gap-1 flex-col font-medium">
-                  <p>Name</p>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e)=>setName(e.target.value)}
-                    className=" outline-none bg-zinc-100 pt-1 pb-1 pl-2 pr-2"
-                  />
-                </div>
-                <div className="flex gap-1 flex-col font-medium">
-                  <p>Email</p>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e)=>setEmail(e.target.value)}
-                    className=" outline-none bg-zinc-100 pt-1 pb-1 pl-2 pr-2"
-                  />
-                </div>
-                <div>
-                  <button type="submit" className="flex justify-center items-center rounded font-medium bg-indigo-600 text-white w-[200px] h-[30px] mt-2">Save changes</button>
-                </div>
-              </form>
-              )
-              }
-              
-            </div>
+            <Profile/>
           </div>
         </div>
       )}
