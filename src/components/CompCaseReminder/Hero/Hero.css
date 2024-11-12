@@ -1,0 +1,135 @@
+.hero {
+  margin-top: 74px;
+  background-color: #ffecef;
+}
+.hero-hero-top {
+  padding: 30px 70px;
+  display: flex;
+  align-items: center;
+}
+.hero-top p {
+  cursor: pointer;
+  font-size: 19px;
+}
+.hero-top span {
+  margin-left: 10px;
+  font-size: 19px;
+}
+.hero-top i {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.hero_bottom {
+  padding: 30px 70px;
+}
+.types_reminder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.types_reminder p {
+  cursor: pointer;
+  font-size: 18px;
+}
+.types_reminder p:hover {
+  background-color: #f9e0e5;
+  border-radius: 16px;
+  width: 50%;
+  padding: 7px;
+}
+.task-details {
+  width: 500px;
+  padding: 15px 10px;
+  margin: 20px auto;
+}
+.task-details form {
+  min-height: 1100px;
+  background: #fff;
+  color: #ecf0f1;
+  padding: 15px 10px;
+  box-shadow: 3px 5px 15px -5px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  position: relative;
+}
+.task-details input {
+  width: 100%;
+  line-height: 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+
+  margin: 10px 20px;
+  font-weight: bold;
+  border: 1px solid #000;
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.task-details textarea {
+  width: 100%;
+  border: none;
+  line-height: 30px;
+  background: transparent;
+  color: #a5a8a8;
+  font-size: 1rem;
+
+  outline: none;
+  width: 100%;
+  margin: 0px 20px;
+  border: 1px solid #000;
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.date {
+  width: 50%;
+  border: 1px solid #000;
+}
+.case_number {
+  border: 1px solid #000;
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.button {
+  width: 50px;
+  position: absolute;
+  bottom: -600px;
+  right: 590px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: aqua;
+}
+.opposing-party-info p {
+  color: #000;
+  font-weight: 600;
+  border: 1px solid red;
+}
+.opposing-party-info input {
+  border: 1px solid #000;
+  width: 90%;
+  padding: 10px;
+}
+.client_info p {
+  color: #000;
+  font-weight: 600;
+  border: 1px solid red;
+}
+.client_info input {
+  border: 1px solid #000;
+  width: 90%;
+  padding: 10px;
+}
+.task-details select {
+  margin-left: 20px;
+}
+.p {
+  color: #000;
+  font-weight: 600;
+  margin-left: 10px;
+  border: 1px solid red;
+}

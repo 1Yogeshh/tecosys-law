@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&display=swap");
+
+.about-section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: white; /* Default background for light mode */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.about-section-first {
+  width: 300px;
+  border-radius: 10px;
+  height: 300px;
+}
+
+.about-section-first-logo {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(79, 70, 229);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.about-section-first-title {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.about-section-first-disc {
+  margin-top: 8px;
+  font-size: 15px;
+  color: rgb(53, 53, 53);
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #000000; /* Full black background in dark mode */
+}
+
+.dark-mode .about-section-first { /* Dark background for each section */
+  color: black; /* White text in dark mode */
+}
+
+.dark-mode .about-section-first-logo {
+  background-color: #4f46e5; /* Same logo background color for consistency */
+}
+
+.dark-mode .about-section-first-title {
+  color: #ffffff; /* White text for title in dark mode */
+}
+
+.dark-mode .about-section-first-disc {
+  color: #dddddd; /* Lighter text for description */
+}
